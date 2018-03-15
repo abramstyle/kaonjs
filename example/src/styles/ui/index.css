@@ -1,0 +1,11 @@
+@import "../variables/colors.css";
+
+a {
+  color: $brand;
+  text-decoration: none;
+
+  &:hover {
+    color: $brand-active;
+    text-decoration: underline;
+  }
+}

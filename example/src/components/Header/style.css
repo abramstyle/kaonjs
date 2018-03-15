@@ -1,0 +1,31 @@
+@import "../../styles/variables.css";
+
+.header {
+  display: flex;
+  background-color: $indigo;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 10px 20px;
+}
+.nav {
+  display: flex;
+  ul {
+    display: flex;
+    margin: 0;
+    list-style-type: none;
+    line-height: 2em;
+  }
+  li {
+    margin-right: 20px;
+  }
+  a {
+    display: block;
+    padding: 10px 20px;
+    background-color: transparent;
+    transition: background-color .5s;
+    color: #eee;
+  }
+}

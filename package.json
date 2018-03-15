@@ -6,10 +6,11 @@
   "repository": "https://github.com/abramstyle/cybertron",
   "author": "Abramstyle <abram.style@gmail.com>",
   "bin": {
-    "keon": "./bin/cli.js"
+    "keon": ".bin/cli.js"
   },
   "scripts": {
-    "dev": "NODE_ENV=development node ./modules/cybertron",
+    "start": "NODE_ENV=development .bin/cli.js start --config ./example/config/cybertron.config.js",
+    "dev": "NODE_ENV=development .bin/cli.js start --config ./example/config/cybertron.config.js",
     "prod": "NODE_ENV=production node ./modules/cybertron",
     "server": "NODE_ENV=development nodemon server",
     "build:server": "webpack --config config/webpack/server.config.js --watch --env=development --progress --colors"

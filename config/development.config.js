@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { resolve } = require('path');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
@@ -17,7 +16,7 @@ const getConfig = (config) => {
         'react-hot-loader/patch',
         // support async & await
         'babel-polyfill',
-        resolve('src/client'),
+        config.isomorphic.main,
       ],
       commons: [
         'react',

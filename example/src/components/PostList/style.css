@@ -1,0 +1,19 @@
+@import "../../styles/variables.css";
+
+.post-items {
+  margin-top: 20px;
+  border: 1px solid $border;
+}
+
+.post-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-item {
+  width: 100%;
+  &:not(:last-child) {
+    border-bottom: 1px solid $border;
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../styles/variables.css";
+
+.load-more {
+  margin-top: 20px;
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 40px;
+  cursor: pointer;
+  background-color: $light-bg;
+}

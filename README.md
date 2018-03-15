@@ -50,6 +50,7 @@ An configuration specified these optons:
 ### isomorphic
 - isomorphic.routes - The client routes path, should be an string, the default value is `<project_root>/src/routes`.
 - isomorphic.store - The client store path, should be an string, the default value is `<project_root>/src/store/configureStore`
+- isomorphic.main - The client entry
 
 ### postcss
 - postcss.path - If use postcss, shoud specify postcss path.

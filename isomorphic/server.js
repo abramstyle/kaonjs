@@ -11,9 +11,7 @@ import { getBundles } from 'react-loadable/webpack';
 
 import prefetch from '../utils/prefetch';
 
-import stats from '../../../build/react-loadable.json';
-import configureStore from '../../../src/store/configureStore';
-import routes from '../../../src/routes';
+const { stats, configureStore, routes } = require('./clientConfig');
 
 const getRenderer = async config => async (ctx) => {
   // const context = {};

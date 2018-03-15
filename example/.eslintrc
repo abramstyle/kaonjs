@@ -1,0 +1,64 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "security",
+    "immutable"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:security/recommended"
+  ],
+  "rules": {
+    "strict": 0,
+    "max-len": ["error", 200, 4, {"ignoreUrls": true, "ignoreStrings": true ,"ignoreTemplateLiterals": true}],
+    "global-require": 0,
+    "no-param-reassign": 0,
+    "class-methods-use-this": 0,
+    "no-restricted-syntax": ["error", "BinaryExpression[operator='in']"],
+    # allow async-await
+    "generator-star-spacing": 0,
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true,
+      "optionalDependencies": false,
+      "peerDependencies": false
+      }],
+      "jsx-a11y/anchor-is-valid": [ "error", {
+        "specialLink": [ "hrefLeft", "hrefRight" ],
+        "aspects": [ "noHref", "invalidHref", "preferButton" ]
+      }
+    ],
+    "jsx-a11y/anchor-has-content": 0,
+    "react/no-unescaped-entities": 0,
+    "react/sort-comp": 0,
+    "react/require-default-props": 0,
+    "react/no-console": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/no-unused-prop-types": ["error", { "skipShapeProps": true }],
+    "react/forbid-prop-types": ["error", { "forbid": ["any", "array"] }],
+    "import/prefer-default-export": 0,
+    "import/no-dynamic-require": 0,
+    "react/prefer-stateless-function": [1,{"ignorePureComponents": true}],
+    "no-underscore-dangle": ["error", { "allow": ["__DEV__", "__PROD__", "__RELEASE__", "__STAGING__", "__PRELOADED_STATE__"] }],
+    "react/no-did-mount-set-state":0
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "config/webpack/development.config.js"
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true,
+    "jest": true
+  },
+  "globals": {
+    "__DEV__": true,
+    "__PROD__": true,
+    "__RELEASE__": true,
+    "__STAGING__": true,
+    "__PRELOADED_STATE__": true,
+  }
+}
