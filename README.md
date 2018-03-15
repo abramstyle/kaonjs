@@ -44,8 +44,8 @@ An configuration specified these optons:
 ### cache
 - cache.redisCacheAlive - The cache life stored in redis, should be an int.
 - cache.memoryCacheAlive - The cache life stored in memory, should be an int.
-- validStatus - Cache the result only if response status matched the given status, should be an array.
-- validMethods - Cache the result only if the request method metch the given method.
+- cache.validStatus - Cache the result only if response status matched the given status, should be an array.
+- cache.validMethods - Cache the result only if the request method metch the given method.
 
 ### isomorphic
 - isomorphic.routes - The client routes path, should be an string, the default value is `<project_root>/src/routes`.
