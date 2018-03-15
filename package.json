@@ -6,7 +6,7 @@
   "repository": "https://github.com/abramstyle/cybertron",
   "author": "Abramstyle <abram.style@gmail.com>",
   "bin": {
-    "cybertron": "./bin/cli"
+    "keon": "./bin/cli.js"
   },
   "scripts": {
     "dev": "NODE_ENV=development node ./modules/cybertron",
