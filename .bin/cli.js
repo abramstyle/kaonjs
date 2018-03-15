@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const start = require('../scripts/start');
 
-const r = require('yargs').usage('cybertron <cmd> [args]')
+const r = require('yargs').usage('keon <cmd> [options]')
   .command('start [options]', 'Start keon server!', (yargs) => {
     return yargs.options('config', {
       type: 'string',

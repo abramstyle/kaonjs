@@ -60,3 +60,19 @@ An configuration specified these optons:
 - build.port - the dev server port.
 - webpack - if you will override default webpack configurations, then specify this path, and it should be an function witch return webpack configuration with given env. If no file found, an warn will be shown.
 - path - the build result path.
+
+## command line
+command: `keon <cmd> [options]`
+
+### commands
+#### `keon start [options]`
+
+available options:
+
+- config - specify config path
+
+#### `keon build [options]`
+
+available options:
+
+- config - specify config path
