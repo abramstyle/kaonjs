@@ -1,8 +1,0 @@
-@import "../variables/values.css";
-
-:global {
-  body {
-    font-family: $basic-font;
-    font-size: 14px;
-  }
-}
