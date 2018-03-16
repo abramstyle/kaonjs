@@ -21,7 +21,7 @@ function loadBuildConfig(appConfig) {
   if (!objectUtils.isObject(appConfig)) {
     throw new Error('expect app config as an object');
   }
-  const localConfigBuilder = require('../config/webpack.config');
+  const localConfigBuilder = require('../config/webpack.client.config');
   const clientConfig = buildConfig(localConfigBuilder, appConfig);
   let externalConfig = null;
   if (appConfig.build.webpack) {

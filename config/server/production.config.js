@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 require('dotenv').config({
   path: path.resolve(__dirname, '../../.env'),
@@ -15,7 +16,7 @@ const webpack = require('webpack');
 
 const getConfig = (config) => {
   const nodeModules = path.resolve(process.cwd(), 'node_modules');
-  const entry = path.resolve(__dirname, '../isomorphic/server.js');
+  const entry = path.resolve(__dirname, '../../isomorphic/server.js');
   const externals = fs
     .readdirSync(nodeModules)
     // .filter(x => !/\.bin|react-loadable/.test(x))
@@ -34,7 +35,7 @@ const getConfig = (config) => {
     entry: [entry],
     externals,
     output: {
-      path: config.build.path,
+      path: config.build.target,
       filename: '[name].js',
       libraryTarget: 'commonjs2',
     },
@@ -68,11 +69,10 @@ const getConfig = (config) => {
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify('development'),
-          API_HOST: JSON.stringify(process.env.API_HOST),
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         },
-        loadablePath: '../../../build/react-loadable.json',
       }),
+      new UglifyJSPlugin(),
     ],
   };
 };

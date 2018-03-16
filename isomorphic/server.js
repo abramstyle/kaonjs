@@ -43,7 +43,9 @@ const getRenderer = async config => async (ctx) => {
   const html = ReactDOMServer.renderToString(Container);
   const helmet = Helmet.renderStatic();
 
+  console.log('modules: ', modules);
   const bundles = getBundles(stats, modules);
+  console.log('bundles: ', bundles);
 
   return {
     html,

@@ -1,7 +1,7 @@
 
-      const { default: routes } = require('/Users/abramstyle/projects/abram/cybertron/example/src/routes');
-      const { default: configureStore } = require('/Users/abramstyle/projects/abram/cybertron/example/src/store/configureStore.js');
-      const stats = require('/Users/abramstyle/projects/abram/cybertron/example/build/react-loadable.json');
+      const { default: routes } = require('/Users/abramstyle/projects/abram/react-isomorphic-boilerplate/src/routes');
+      const { default: configureStore } = require('/Users/abramstyle/projects/abram/react-isomorphic-boilerplate/src/store/configureStore.js');
+      const stats = require('/Users/abramstyle/projects/abram/react-isomorphic-boilerplate/public/build/react-loadable.json');
 
       exports.routes = routes;
       exports.configureStore = configureStore;

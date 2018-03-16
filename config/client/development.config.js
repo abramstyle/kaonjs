@@ -3,12 +3,11 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { generateCdnPath } = require('../../utils');
 
 const getConfig = (config) => {
   const serverHost = config.build.host || '0.0.0.0';
   const serverPort = config.build.port || 1592;
-
   return {
   // mode: 'development',
     entry: {
@@ -38,9 +37,9 @@ const getConfig = (config) => {
       filename: '[name].js',
       // the output bundle
 
-      path: config.build.path,
+      path: config.build.target,
 
-      publicPath: `http://${serverHost}:${serverPort}/`,
+      publicPath: generateCdnPath(config),
       // necessary for HMR to know where to load the hot update chunks
       sourceMapFilename: '[name].js.map',
     },
@@ -58,7 +57,7 @@ const getConfig = (config) => {
       // match the output path
       historyApiFallback: true,
 
-      publicPath: `http://${serverHost}:${serverPort}/`,
+      publicPath: generateCdnPath(config),
       // match the output `publicPath`
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -71,11 +70,6 @@ const getConfig = (config) => {
 
     module: {
       rules: [{
-        test: /\.pug/,
-        use: [{
-          loader: 'pug-loader',
-        }],
-      }, {
         test: /\.js$/,
         use: [{
           loader: 'babel-loader',
@@ -136,7 +130,7 @@ const getConfig = (config) => {
     plugins: [
       new ManifestPlugin(),
       new WriteFilePlugin({
-        // Write only files that have ".css" extension.
+      // Write only files that have ".css" extension.
         test: /\.json/,
         useHashIndex: true,
       }),
@@ -148,18 +142,18 @@ const getConfig = (config) => {
       new webpack.optimize.CommonsChunkPlugin({
         names: ['commons', 'manifest'],
         minChunks(module) {
-          // this assumes your vendor imports exist in the node_modules directory
+        // this assumes your vendor imports exist in the node_modules directory
           return module.context && module.context.indexOf('node_modules') !== -1;
         },
       }),
-
       new ReactLoadablePlugin({
-        filename: `${config.build.path}/react-loadable.json`,
+        filename: `${config.build.target}/react-loadable.json`,
       }),
       new webpack.DefinePlugin({
-        'process.env.APP_ENV': JSON.stringify(process.env.NODE_ENV),
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        'process.env.API_HOST': JSON.stringify(process.env.API_HOST),
+        'process.env': {
+          APP_ENV: JSON.stringify(process.env.NODE_ENV),
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        },
       }),
     // new HtmlWebpackPlugin({ // Also generate a test.html
     //   template: './src/index.pug',

@@ -1,3 +1,3 @@
-const bootstrap = require('./lib/bootstrap');
+const Keon = require('./lib/keon');
 
-bootstrap({});
+module.exports = Keon;

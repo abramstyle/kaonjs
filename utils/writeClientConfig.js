@@ -10,7 +10,7 @@ const template = (config) => {
   return `
       const { default: routes } = require('${routes}');
       const { default: configureStore } = require('${store}');
-      const stats = require('${build.path}/react-loadable.json');
+      const stats = require('${build.target}/react-loadable.json');
 
       exports.routes = routes;
       exports.configureStore = configureStore;

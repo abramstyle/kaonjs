@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const start = require('../scripts/start');
+const build = require('../scripts/build');
 
 const r = require('yargs').usage('keon <cmd> [options]')
   .command('start [options]', 'Start keon server!', (yargs) => {
@@ -16,8 +17,14 @@ const r = require('yargs').usage('keon <cmd> [options]')
     start(argv);
   })
   .command('build [options]', 'Build static resources.', (yargs) => {
+    return yargs.options('config', {
+      type: 'string',
+      default: 'config',
+      describe: 'the config file',
+      required: true,
+    });
   }, (argv) => {
-    console.log('build: ', argv);
+    build(argv);
   })
   .help()
   .argv;

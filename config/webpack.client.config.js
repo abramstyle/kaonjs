@@ -1,5 +1,5 @@
 function buildConfig(env) {
-  const config = require(`./${env}.config`);
+  const config = require(`./client/${env}.config`);
 
   return config;
 }

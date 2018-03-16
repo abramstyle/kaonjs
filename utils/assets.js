@@ -1,0 +1,2 @@
+function resourcePath(manifest) {
+}

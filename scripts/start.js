@@ -13,9 +13,10 @@ function run(options) {
     process.exit();
   }
 
-  if (config) {
-    bootstrap(processConfig(config));
+  if (!config) {
+    throw new Error('config not found');
   }
+  return bootstrap(processConfig(config));
 }
 
 module.exports = run;
