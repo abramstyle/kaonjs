@@ -1,9 +1,9 @@
 {
   "name": "keon",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Keon is a react isomorphic framework, render your code from server side, with automatic code splitting",
   "main": "index.js",
-  "repository": "https://github.com/abramstyle/cybertron",
+  "repository": "https://github.com/abramstyle/keon",
   "author": "Abramstyle <abram.style@gmail.com>",
   "bin": {
     "keon": ".bin/cli.js"
@@ -11,7 +11,7 @@
   "scripts": {
     "start": "NODE_ENV=development .bin/cli.js start --config ./example/config/cybertron.config.js",
     "dev": "NODE_ENV=development .bin/cli.js start --config ./example/config/cybertron.config.js",
-    "prod": "NODE_ENV=production node ./modules/cybertron",
+    "prod": "NODE_ENV=production .bin/cli.js start --config ./example/config/cybertron.config.js",
     "server": "NODE_ENV=development nodemon server",
     "build:server": "webpack --config config/webpack/server.config.js --watch --env=development --progress --colors"
   },
