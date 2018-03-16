@@ -76,3 +76,13 @@ available options:
 available options:
 
 - config - specify config path
+
+## nodejs APIs
+You can use keon as an npm modules instead of cli.
+
+```javascript
+const Keon = require('keon');
+const keon = new Keon(config);
+
+keon.start();
+```
