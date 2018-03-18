@@ -151,9 +151,13 @@ const getConfig = (config) => {
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          APP_ENV: JSON.stringify(process.env.NODE_ENV),
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+          APP_ENV: JSON.stringify(process.env.NODE_ENV),
         },
+        __DEV__: JSON.stringify(__DEV__),
+        __STAGING__: JSON.stringify(__STAGING__),
+        __RELEASE__: JSON.stringify(__RELEASE__),
+        __PROD__: JSON.stringify(__PROD__),
       }),
     // new HtmlWebpackPlugin({ // Also generate a test.html
     //   template: './src/index.pug',

@@ -114,11 +114,20 @@ const getConfig = config => ({
       },
     }),
     new webpack.DefinePlugin({
-      'process.env.APP_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        APP_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+      __DEV__: JSON.stringify(__DEV__),
+      __STAGING__: JSON.stringify(__STAGING__),
+      __RELEASE__: JSON.stringify(__RELEASE__),
+      __PROD__: JSON.stringify(__PROD__),
     }),
     new UglifyJSPlugin(),
-    new ExtractTextPlugin('[name]-[contenthash].css'),
+    new ExtractTextPlugin({
+      filename: '[name]-[contenthash].css',
+      allChunks: true,
+    }),
     // prints more readable module names in the browser console on HMR updates
     new ReactLoadablePlugin({
       filename: `${config.build.target}/react-loadable.json`,
