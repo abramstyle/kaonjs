@@ -70,7 +70,6 @@ const getConfig = (config) => {
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         },
-        loadablePath: '../../../build/react-loadable.json',
       }),
     ],
   };

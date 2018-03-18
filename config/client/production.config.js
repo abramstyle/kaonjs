@@ -101,15 +101,10 @@ const getConfig = config => ({
   },
 
   plugins: [
-    new ManifestPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     // enable HMR globally
 
     new webpack.NamedModulesPlugin(),
-    // prints more readable module names in the browser console on HMR updates
-    new ReactLoadablePlugin({
-      filename: `${config.build.target}/react-loadable.json`,
-    }),
 
     new webpack.optimize.CommonsChunkPlugin({
       names: ['commons', 'manifest'],
@@ -124,6 +119,11 @@ const getConfig = config => ({
     }),
     new UglifyJSPlugin(),
     new ExtractTextPlugin('[name]-[contenthash].css'),
+    // prints more readable module names in the browser console on HMR updates
+    new ReactLoadablePlugin({
+      filename: `${config.build.target}/react-loadable.json`,
+    }),
+    new ManifestPlugin(),
   ],
 });
 

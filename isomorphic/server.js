@@ -13,7 +13,7 @@ import prefetch from '../utils/prefetch';
 
 const { stats, configureStore, routes } = require('./clientConfig');
 
-const getRenderer = async config => async (ctx) => {
+const getRenderer = async () => async (ctx) => {
   // const context = {};
   const store = configureStore();
   const context = {};
@@ -43,9 +43,8 @@ const getRenderer = async config => async (ctx) => {
   const html = ReactDOMServer.renderToString(Container);
   const helmet = Helmet.renderStatic();
 
-  console.log('modules: ', modules);
+  // console.log('modules: ', modules, stats);
   const bundles = getBundles(stats, modules);
-  console.log('bundles: ', bundles);
 
   return {
     html,
