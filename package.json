@@ -1,6 +1,6 @@
 {
   "name": "keon",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Keon is a react isomorphic framework, render your code from server side, with automatic code splitting",
   "main": "index.js",
   "repository": "https://github.com/abramstyle/keon",
