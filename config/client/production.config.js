@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const ExtractCssThunks = require('extract-css-chunks-webpack-plugin');
+const ExtractTextPlugin = require('extract-css-chunks-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const { generateCdnPath } = require('../../utils');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
@@ -55,7 +55,7 @@ const getConfig = config => ({
       exclude: /node_modules/,
     }, {
       test: /\.css$/,
-      use: ExtractCssThunks.extract({
+      use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [{
           loader: 'css-loader',
@@ -124,7 +124,7 @@ const getConfig = config => ({
       __PROD__: JSON.stringify(__PROD__),
     }),
     new UglifyJSPlugin(),
-    new ExtractCssThunks({
+    new ExtractTextPlugin({
       filename: '[name]-[contenthash].css',
       allChunks: true,
     }),
