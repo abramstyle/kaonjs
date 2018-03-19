@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const ExtractTextPlugin = require('extract-css-chunks-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const { generateCdnPath } = require('../../utils');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
