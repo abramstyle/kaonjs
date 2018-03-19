@@ -146,9 +146,6 @@ const getConfig = (config) => {
           return module.context && module.context.indexOf('node_modules') !== -1;
         },
       }),
-      new ReactLoadablePlugin({
-        filename: `${config.build.target}/react-loadable.json`,
-      }),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
@@ -158,6 +155,9 @@ const getConfig = (config) => {
         __STAGING__: JSON.stringify(__STAGING__),
         __RELEASE__: JSON.stringify(__RELEASE__),
         __PROD__: JSON.stringify(__PROD__),
+      }),
+      new ReactLoadablePlugin({
+        filename: `${config.build.target}/react-loadable.json`,
       }),
     // new HtmlWebpackPlugin({ // Also generate a test.html
     //   template: './src/index.pug',

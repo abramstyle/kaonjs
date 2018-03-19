@@ -19,5 +19,5 @@ coverage/*
 logs/*
 .happypack/
 mockdb.js
-cybertron/build/*
-cybertron/node_modules/*
+public/build/*
+isomorphic/clientConfig.js
