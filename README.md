@@ -22,7 +22,7 @@ Kaon is a Decepticon-controlled city-state in the southern hemisphere of Cybertr
 # Usage
 ## install
 ```
-npm install kaon.js
+npm install kaonjs
 ```
 or with yarn
 ```
