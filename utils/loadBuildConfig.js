@@ -26,7 +26,7 @@ function loadBuildConfig(appConfig) {
   let externalConfig = null;
   if (appConfig.build.webpack) {
     try {
-      const externalConfigBuilder = require(app.config.webpack);
+      const externalConfigBuilder = require(appConfig.build.webpack);
       externalConfig = buildConfig(externalConfigBuilder);
     } catch (e) {
       console.warn('webpack config found, but load file failed.');
