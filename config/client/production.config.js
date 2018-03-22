@@ -114,6 +114,7 @@ const getConfig = config => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         APP_ENV: JSON.stringify(process.env.NODE_ENV),
       },
+      __IS_SERVER__: JSON.stringify(false),
       __DEV__: JSON.stringify(__DEV__),
       __STAGING__: JSON.stringify(__STAGING__),
       __RELEASE__: JSON.stringify(__RELEASE__),
