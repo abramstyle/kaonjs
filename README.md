@@ -1,8 +1,11 @@
-# Kaon
-kaon is an react isomorphic app solution. it contains webpack build, hot reloading, code splitting and server side rendering.
+# kaon.js
+Kaon.js is an react isomorphic app solution. it contains webpack build, hot reloading, code splitting and server side rendering.
+
+# From
+Kaon is a Decepticon-controlled city-state in the southern hemisphere of Cybertron. Under Decepticon rule, its capitol is the fortress of Kolkular.
 
 # The pronounce
-/ki:æn/
+['keɑn]
 
 # The main stack
 - koa
@@ -19,7 +22,7 @@ kaon is an react isomorphic app solution. it contains webpack build, hot reloadi
 # Usage
 ## install
 ```
-npm install kaon
+npm install kaon.js
 ```
 or with yarn
 ```
