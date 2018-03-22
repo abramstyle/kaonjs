@@ -1,12 +1,12 @@
 {
-  "name": "keon",
+  "name": "kaon",
   "version": "0.1.5",
-  "description": "Keon is a react isomorphic framework, render your code from server side, with automatic code splitting",
+  "description": "Kaon is a react isomorphic framework, render your code from server side, with automatic code splitting",
   "main": "index.js",
-  "repository": "https://github.com/abramstyle/keon",
+  "repository": "https://github.com/abramstyle/kaon",
   "author": "Abramstyle <abram.style@gmail.com>",
   "bin": {
-    "keon": ".bin/cli.js"
+    "kaon": ".bin/cli.js"
   },
   "scripts": {
     "start": "NODE_ENV=development .bin/cli.js start --config ./example/config/cybertron.config.js",

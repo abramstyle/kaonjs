@@ -1,5 +1,8 @@
-# Keon
-keon is an react isomorphic app solution. it contains webpack build, hot reloading, code splitting and server side rendering.
+# Kaon
+kaon is an react isomorphic app solution. it contains webpack build, hot reloading, code splitting and server side rendering.
+
+# The pronounce
+/ki:æn/
 
 # The main stack
 - koa
@@ -16,11 +19,11 @@ keon is an react isomorphic app solution. it contains webpack build, hot reloadi
 # Usage
 ## install
 ```
-npm install keon
+npm install kaon
 ```
 or with yarn
 ```
-yarn add keon
+yarn add kaon
 ```
 ## add your config
 Config is a js file that default exported a Javascript object, it specified a lot ot configurations. The default path is `<project_root>/config/cybertron.config.js`. But you can put it into anywhere of your project.
@@ -35,7 +38,7 @@ An configuration specified these optons:
 - app.routes - Customize koa routes.
 
 ### resources
-- resources.root - If resources.root is exist, keon will serve all files inside the path as static server.
+- resources.root - If resources.root is exist, kaon will serve all files inside the path as static server.
 
 ### logs
 - logs.path - the access log will be written to here.
@@ -63,27 +66,27 @@ An configuration specified these optons:
 - build.target - the build result path.
 
 ## command line
-command: `keon <cmd> [options]`
+command: `kaon <cmd> [options]`
 
 ### commands
-#### `keon start [options]`
+#### `kaon start [options]`
 
 available options:
 
 - config - specify config path
 
-#### `keon build [options]`
+#### `kaon build [options]`
 
 available options:
 
 - config - specify config path
 
 ## nodejs APIs
-You can use keon as an npm modules instead of cli.
+You can use kaon as an npm modules instead of cli.
 
 ```javascript
-const Keon = require('keon');
-const keon = new Keon(config);
+const Kaon = require('kaon');
+const kaon = new Kaon(config);
 
-keon.start();
+kaon.start();
 ```

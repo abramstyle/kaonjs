@@ -1,3 +1,3 @@
-const Keon = require('./lib/keon');
+const Kaon = require('./lib/kaon');
 
-module.exports = Keon;
+module.exports = Kaon;

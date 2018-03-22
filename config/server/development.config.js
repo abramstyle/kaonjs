@@ -43,7 +43,7 @@ const getConfig = (config) => {
         {
           test: /\.js$/,
           use: 'babel-loader',
-          exclude: modulePath => /node_modules/.test(modulePath) && !/node_modules\/keon/.test(modulePath),
+          exclude: modulePath => /node_modules/.test(modulePath) && !/node_modules\/kaon/.test(modulePath),
         },
         {
           test: /\.css$/,

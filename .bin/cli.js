@@ -2,8 +2,8 @@
 const start = require('../scripts/start');
 const build = require('../scripts/build');
 
-const r = require('yargs').usage('keon <cmd> [options]')
-  .command('start [options]', 'Start keon server!', (yargs) => {
+const r = require('yargs').usage('kaon <cmd> [options]')
+  .command('start [options]', 'Start kaon server!', (yargs) => {
     return yargs.options('config', {
       type: 'string',
       default: 'config',
