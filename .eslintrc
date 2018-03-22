@@ -59,6 +59,7 @@
     "__PROD__": true,
     "__RELEASE__": true,
     "__STAGING__": true,
+    "__IS_SERVER__": true,
     "__PRELOADED_STATE__": true,
   }
 }
