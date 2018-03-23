@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 const _ = require('lodash');
 
 function mergeWebpack(...configurations) {
-  merge({
+  return merge({
     customizeArray(a, b, key) {
       if (key === 'extensions') {
         return _.uniq([...a, ...b]);
