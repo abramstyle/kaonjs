@@ -21,22 +21,38 @@ function loadBuildConfig(appConfig) {
   if (!objectUtils.isObject(appConfig)) {
     throw new Error('expect app config as an object');
   }
-  const localConfigBuilder = require('../config/webpack.client.config');
-  const clientConfig = buildConfig(localConfigBuilder, appConfig);
-  let externalConfig = null;
-  if (appConfig.build.webpack) {
+  const config = {
+    client: {},
+    server: {},
+  };
+  const localClientConfigBuilder = require('../config/webpack.client.config');
+  config.client = buildConfig(localClientConfigBuilder, appConfig);
+  const localServerBuilder = require('../config/webpack.client.config');
+  config.server = buildConfig(localServerBuilder, appConfig);
+
+  if (appConfig.webpack.client) {
     try {
-      const externalConfigBuilder = require(appConfig.build.webpack);
-      externalConfig = buildConfig(externalConfigBuilder);
+      const externalClientConfigBuilder = require(appConfig.webpack.client);
+      const externalClientConfig = buildConfig(externalClientConfigBuilder);
+
+      config.client = merge.smart(config.client, externalClientConfig);
     } catch (e) {
+      console.log('error: ', e);
+      console.warn('client webpack config found, but load file failed.');
+    }
+  }
+
+  if (appConfig.webpack.server) {
+    try {
+      const externalServerConfigBuilder = require(appConfig.webpack.server);
+      const externalServerConfig = buildConfig(externalServerConfigBuilder);
+
+      config.server = merge.smart(config.client, externalServerConfig);
+    } catch (e) {
+      console.log('error: ', e);
       console.warn('webpack config found, but load file failed.');
     }
   }
-  // console.log('client config: ', clientConfig);
-
-  const config = merge.smart(clientConfig, externalConfig);
-
-  // console.log('config: ', config);
 
   return config;
 }
