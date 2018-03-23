@@ -1,11 +1,33 @@
 const merge = require('webpack-merge');
-const _ = require('lodash');
+const { arrayUtils } = require('@abramstyle/utils');
+
+function mergeModules(module, otherModule) {
+  const allRules = [...module.rules, ...otherModule.rules];
+  const rules = allRules
+    .reduce((items, item) => {
+      const testString = item.test.toString();
+      const existent = arrayUtils.findOne(items, current => current.test.toString() === testString);
+
+      if (existent) {
+        Object.assign(existent, item);
+      } else {
+        items.push(item);
+      }
+
+      return items;
+    }, []);
+
+  // console.log('rules: ', rules);
+  return {
+    rules,
+  };
+}
 
 function mergeWebpack(...configurations) {
   return merge({
     customizeArray(a, b, key) {
       if (key === 'extensions') {
-        return _.uniq([...a, ...b]);
+        return arrayUtils.uniq([...a, ...b]);
       }
 
       // Fall back to default merging
@@ -13,8 +35,8 @@ function mergeWebpack(...configurations) {
     },
     customizeObject(a, b, key) {
       if (key === 'module') {
-        // Custom merging
-        return _.merge({}, a, b);
+        // Custom mergingk
+        return mergeModules(a, b);
       }
 
       // Fall back to default merging
@@ -23,4 +45,5 @@ function mergeWebpack(...configurations) {
   })(...configurations);
 }
 
-module.exports = mergeWebpack;
+exports.mergeModules = mergeModules;
+exports.mergeWebpack = mergeWebpack;
