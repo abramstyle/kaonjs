@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const { objectUtils } = require('@abramstyle/utils');
+const mergeWebpack = require('./mergeWebpack');
 
 function buildConfig(configBuilder, appConfig) {
   if (!configBuilder) return null;
@@ -35,7 +36,8 @@ function loadBuildConfig(appConfig) {
       const externalClientConfigBuilder = require(appConfig.webpack.client);
       const externalClientConfig = buildConfig(externalClientConfigBuilder);
 
-      config.client = merge.smart(config.client, externalClientConfig);
+
+      config.client = mergeWebpack(config.client, externalClientConfig);
     } catch (e) {
       console.log('error: ', e);
       console.warn('client webpack config found, but load file failed.');
@@ -47,7 +49,7 @@ function loadBuildConfig(appConfig) {
       const externalServerConfigBuilder = require(appConfig.webpack.server);
       const externalServerConfig = buildConfig(externalServerConfigBuilder);
 
-      config.server = merge.smart(config.client, externalServerConfig);
+      config.server = mergeWebpack(config.client, externalServerConfig);
     } catch (e) {
       console.log('error: ', e);
       console.warn('webpack config found, but load file failed.');
