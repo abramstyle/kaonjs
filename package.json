@@ -51,6 +51,7 @@
     "koa-favicon": "^2.0.0",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
+    "lodash": "^4.17.5",
     "postcss": "^6.0.19",
     "postcss-loader": "^2.0.9",
     "precss": "^2.0.0",
