@@ -1,6 +1,5 @@
-const merge = require('webpack-merge');
 const { objectUtils } = require('@abramstyle/utils');
-const mergeWebpack = require('./mergeWebpack');
+const { mergeWebpack } = require('./mergeWebpack');
 
 function buildConfig(configBuilder, appConfig) {
   if (!configBuilder) return null;
