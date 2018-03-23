@@ -19,7 +19,7 @@ function build(options) {
 
   const buildConfig = loadBuildConfig(config);
 
-  const compiler = new Compiler(buildConfig);
+  const compiler = new Compiler(buildConfig.client);
 
   console.log('building resources...');
   compiler.run()
