@@ -27,7 +27,7 @@ function loadBuildConfig(appConfig) {
   };
   const localClientConfigBuilder = require('../config/webpack.client.config');
   config.client = buildConfig(localClientConfigBuilder, appConfig);
-  const localServerBuilder = require('../config/webpack.client.config');
+  const localServerBuilder = require('../config/webpack.server.config');
   config.server = buildConfig(localServerBuilder, appConfig);
 
   if (appConfig.webpack.client) {
