@@ -58,6 +58,31 @@ const getConfig = (config) => {
               localIdentName: '[name]__[local]___[hash:base64:5]',
             },
           }],
+        }, {
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              minetype: 'application/font-woff',
+            },
+          },
+        }, {
+          test: /\.jpe?g$|\.gif$|\.png$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        }, {
+          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: {
+            loader: 'file-loader',
+            options: {
+              limit: 10000,
+            },
+          },
         },
       ],
     },
