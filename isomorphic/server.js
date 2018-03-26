@@ -11,11 +11,13 @@ import { getBundles } from 'react-loadable/webpack';
 
 import prefetch from '../utils/prefetch';
 
-const { stats, configureStore, routes } = require('./clientConfig');
+const {
+  stats, configureStore, routes, App,
+} = require('./clientConfig');
 
 const getRenderer = async () => async (ctx) => {
   // const context = {};
-  const store = configureStore(ctx);
+  const store = configureStore();
   const context = {};
 
   await prefetch({
@@ -26,6 +28,9 @@ const getRenderer = async () => async (ctx) => {
 
   const state = store.getState();
   const modules = [];
+  const app = App ? (
+    <App />
+  ) : renderRoutes(routes);
 
   const Container = (
     <Loadable.Capture report={moduleName => modules.push(moduleName)}>
@@ -34,7 +39,7 @@ const getRenderer = async () => async (ctx) => {
           location={ctx.url}
           context={context}
         >
-          {renderRoutes(routes)}
+          {app}
         </Router>
       </Provider>
     </Loadable.Capture>
