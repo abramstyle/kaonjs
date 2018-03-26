@@ -28,6 +28,7 @@ const getRenderer = async () => async (ctx) => {
 
   const state = store.getState();
   const modules = [];
+
   const app = App ? (
     <App />
   ) : renderRoutes(routes);
