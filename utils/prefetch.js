@@ -12,7 +12,7 @@ async function prefetch(config) {
   } = config;
 
 
-  const components = getComponents(routes, url);
+  const components = getComponents(routes, url) || [];
   const fetchingList = [];
 
   components.forEach((component) => {
