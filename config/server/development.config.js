@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { generateCdnPath } = require('../../utils');
 
 require('dotenv').config({
   path: path.resolve(__dirname, '../../.env'),
@@ -35,6 +36,7 @@ const getConfig = (config) => {
     externals,
     output: {
       path: config.build.target,
+      publicPath: generateCdnPath(config),
       filename: '[name].js',
       libraryTarget: 'commonjs2',
     },
