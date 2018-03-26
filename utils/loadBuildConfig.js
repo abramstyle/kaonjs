@@ -48,7 +48,7 @@ function loadBuildConfig(appConfig) {
       const externalServerConfigBuilder = require(appConfig.webpack.server);
       const externalServerConfig = buildConfig(externalServerConfigBuilder);
 
-      config.server = mergeWebpack(config.client, externalServerConfig);
+      config.server = mergeWebpack(config.server, externalServerConfig);
     } catch (e) {
       console.log('error: ', e);
       console.warn('webpack config found, but load file failed.');
