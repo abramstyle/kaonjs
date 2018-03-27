@@ -8,7 +8,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const getConfig = config => ({
   entry: {
     app: [
-      'babel-polyfill',
+      // 'babel-polyfill',
       config.isomorphic.main,
     ],
     commons: [
