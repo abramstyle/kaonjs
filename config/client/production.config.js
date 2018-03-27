@@ -105,6 +105,7 @@ const getConfig = config => ({
 
     new webpack.optimize.CommonsChunkPlugin({
       names: ['commons', 'manifest'],
+      filename: '[name]-[hash].bundle.js',
       minChunks(module) {
         // this assumes your vendor imports exist in the node_modules directory
         return module.context && module.context.indexOf('node_modules') !== -1;
