@@ -25,7 +25,7 @@ function build(options) {
   return compiler.run()
     .then((stats) => {
       console.log('build success.');
-      return Promise.resolve(stats);
+      return Promise.resolve(stats.toJson());
     });
 }
 
