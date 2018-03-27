@@ -22,7 +22,7 @@ function build(options) {
   const compiler = new Compiler(buildConfig.client);
 
   console.log('building resources...');
-  compiler.run()
+  return compiler.run()
     .then(() => {
       console.log('build success.');
     });
