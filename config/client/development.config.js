@@ -14,7 +14,7 @@ const getConfig = (config) => {
       app: [
         'react-hot-loader/patch',
         // support async & await
-        'babel-polyfill',
+        // 'babel-polyfill',
         config.isomorphic.main,
       ],
       commons: [
