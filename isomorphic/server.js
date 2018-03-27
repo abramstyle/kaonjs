@@ -17,7 +17,7 @@ const {
 
 const getRenderer = async () => async (ctx) => {
   // const context = {};
-  const store = configureStore();
+  const store = configureStore(ctx);
   const context = {};
 
   await prefetch({
