@@ -26,6 +26,7 @@ const getConfig = config => ({
   output: {
     filename: '[name]-[chunkhash].js',
     // the output bundle
+    chunkFilename: '[name]-[chunkhash].chunk.js',
 
     path: config.build.target,
 

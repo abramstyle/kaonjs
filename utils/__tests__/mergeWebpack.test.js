@@ -1,58 +1,58 @@
 const { mergeWebpack, mergeModules } = require('../mergeWebpack');
 
-// describe('Test mergeModules', () => {
-//   test('mergeModules', () => {
-//     const module = {
-//       rules: [{
-//         test: /\.css$/,
-//         a: 1,
-//         b: 2,
-//         c: 3,
-//       }, {
-//         test: /\.js$/,
-//         a: 3,
-//         b: 4,
-//         c: 5,
-//       }],
-//     };
-//     const otherModule = {
-//       rules: [{
-//         test: /\.css$/,
-//         a: 2,
-//         b: 2,
-//         c: 3,
-//         d: 5,
-//       }, {
-//         test: /\.jpg$/,
-//         a: 1,
-//         b: 2,
-//         c: 3,
-//       }],
-//     };
-//
-//     const mergedModules = mergeModules(module, otherModule);
-//
-//     expect(mergedModules).toEqual({
-//       rules: [{
-//         test: /\.css$/,
-//         a: 2,
-//         b: 2,
-//         c: 3,
-//         d: 5,
-//       }, {
-//         test: /\.js$/,
-//         a: 3,
-//         b: 4,
-//         c: 5,
-//       }, {
-//         test: /\.jpg$/,
-//         a: 1,
-//         b: 2,
-//         c: 3,
-//       }],
-//     });
-//   });
-// });
+describe('Test mergeModules', () => {
+  test('mergeModules', () => {
+    const module = {
+      rules: [{
+        test: /\.css$/,
+        a: 1,
+        b: 2,
+        c: 3,
+      }, {
+        test: /\.js$/,
+        a: 3,
+        b: 4,
+        c: 5,
+      }],
+    };
+    const otherModule = {
+      rules: [{
+        test: /\.css$/,
+        a: 2,
+        b: 2,
+        c: 3,
+        d: 5,
+      }, {
+        test: /\.jpg$/,
+        a: 1,
+        b: 2,
+        c: 3,
+      }],
+    };
+
+    const mergedModules = mergeModules(module, otherModule);
+
+    expect(mergedModules).toEqual({
+      rules: [{
+        test: /\.css$/,
+        a: 2,
+        b: 2,
+        c: 3,
+        d: 5,
+      }, {
+        test: /\.js$/,
+        a: 3,
+        b: 4,
+        c: 5,
+      }, {
+        test: /\.jpg$/,
+        a: 1,
+        b: 2,
+        c: 3,
+      }],
+    });
+  });
+});
 
 describe('Test merge webpack configurations.', () => {
   test('merge module.rules', () => {
