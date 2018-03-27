@@ -31,7 +31,7 @@ const getConfig = (config) => {
     },
     output: {
       filename: '[name].js',
-      // the output bundle
+
       chunkFilename: '[name].chunk.js',
 
       path: config.build.target,
