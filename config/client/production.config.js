@@ -95,21 +95,6 @@ const getConfig = config => ({
       },
     }],
   },
-  optimization: {
-    minimize: false,
-    splitChunks: {
-      cacheGroups: {
-        default: false,
-        commons: {
-          test: /node_modules/,
-          name: 'commons',
-          chunks: 'initial',
-          minSize: 1,
-          reuseExistingChunk: true,
-        },
-      },
-    },
-  },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -117,13 +102,13 @@ const getConfig = config => ({
 
     new webpack.NamedModulesPlugin(),
 
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   names: ['commons', 'manifest'],
-    //   minChunks(module) {
-    //     // this assumes your vendor imports exist in the node_modules directory
-    //     return module.context && module.context.indexOf('node_modules') !== -1;
-    //   },
-    // }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['commons', 'manifest'],
+      minChunks(module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
