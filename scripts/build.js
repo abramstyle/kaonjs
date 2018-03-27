@@ -23,8 +23,9 @@ function build(options) {
 
   console.log('building resources...');
   return compiler.run()
-    .then(() => {
+    .then((stats) => {
       console.log('build success.');
+      return Promise.resolve(stats);
     });
 }
 
