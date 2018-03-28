@@ -1,10 +1,9 @@
-const Promise = require('bluebird');
-const fs = Promise.promisifyAll(require('fs'));
+const fs = require('fs-extra');
 
 function cleanBuildDir(config) {
   const { build: { target } } = config;
 
-  return fs.rmdir(target);
+  return fs.remove(target);
 }
 
 module.exports = cleanBuildDir;
