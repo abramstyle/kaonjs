@@ -1,8 +1,10 @@
 const loadConfig = require('../utils/loadConfig');
 const loadBuildConfig = require('../utils/loadBuildConfig');
 const Compiler = require('../lib/compiler');
+const cleanBuildDir = require('../utils/cleanBuildDir');
 
-function build(options) {
+async function build(options) {
+  await cleanBuildDir(options);
   // const { env: { NODE_ENV: env } } = process;
   const { config: configPath } = options;
   let config = null;
