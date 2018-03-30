@@ -7,12 +7,12 @@ function isFunction(object) {
 async function prefetch(config) {
   const {
     routes,
-    url,
+    path,
     store,
   } = config;
 
 
-  const components = getComponents(routes, url) || [];
+  const components = getComponents(routes, path) || [];
   const fetchingList = [];
 
   components.forEach((component) => {

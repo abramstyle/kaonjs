@@ -22,7 +22,7 @@ const getRenderer = async () => async (ctx) => {
 
   await prefetch({
     routes,
-    url: ctx.url,
+    path: ctx.path,
     store,
   });
 
