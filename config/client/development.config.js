@@ -127,7 +127,7 @@ const getConfig = (config) => {
     plugins: [
       new ManifestPlugin(),
       new WriteFilePlugin({
-      // Write only files that have ".css" extension.
+      // Write only files that have ".json" extension.
         test: /\.json/,
         useHashIndex: true,
       }),

@@ -33,6 +33,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "bluebird": "^3.5.1",
+    "cli-color": "^1.2.0",
+    "clui": "^0.3.6",
     "css-loader": "^0.28.7",
     "css-modules-require-hook": "^4.2.3",
     "debug": "^3.1.0",
