@@ -7,4 +7,8 @@ function generateCdnPath(config) {
   return `//${serverHost}${port}/${serverPath}`;
 }
 
+function processConfig(config) {
+}
+
 exports.generateCdnPath = generateCdnPath;
+exports.processConfig = processConfig;
