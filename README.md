@@ -37,21 +37,11 @@ An configuration specified these optons:
 - app.name - The app name
 - app.shortName - The short app name.
 - app.port - App listening port.
-- app.keys - Used for cookie encryption.
 - app.routes - Customize koa routes.
+- app.middlewares - the js file that will apply your middlewares.
 
 ### resources
 - resources.root - If resources.root is exist, kaon will serve all files inside the path as static server.
-
-### logs
-- logs.path - the access log will be written to here.
-- logname - logname
-
-### cache
-- cache.redisCacheAlive - The cache life stored in redis, should be an int.
-- cache.memoryCacheAlive - The cache life stored in memory, should be an int.
-- cache.validStatus - Cache the result only if response status matched the given status, should be an array.
-- cache.validMethods - Cache the result only if the request method metch the given method.
 
 ### isomorphic
 - isomorphic.routes - The client routes path, should be an string, the default value is `<project_root>/src/routes`.
@@ -61,11 +51,14 @@ An configuration specified these optons:
 ### postcss
 - postcss.path - If use postcss, shoud specify postcss path.
 
+### webpack
+- webpack.client - your client webpack configuration, object or function.
+- webpack.server - your server webpack configuration, object or function.
+
 ### build
 - build.host - The dev server will server at this host.
 - build.port - the dev server port.
 - build.path - the dev server url path.
-- webpack - if you will override default webpack configurations, then specify this path, and it should be an function witch return webpack configuration with given env. If no file found, an warn will be shown.
 - build.target - the build result path.
 
 ## command line
@@ -93,3 +86,21 @@ const kaon = new Kaon(config);
 
 kaon.start();
 ```
+
+## apply your middleware.
+First, configure your middleware path, it should be a javascript file like below:
+
+```javascript
+const logger = require('koa-logger');
+const favicon = require('koa-favicon');
+const path = require('path');
+
+function applyMiddlewares(app) {
+  app.use(logger());
+  app.use(favicon(path.join(__dirname, '../../public/favicon.ico')));
+}
+
+module.exports = applyMiddlewares;
+```
+
+The app instance will be passed to your function, then just call `app.use` to apply the middlewares.
