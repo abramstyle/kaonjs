@@ -31,6 +31,7 @@ yarn add kaon
 ## add your config
 Config is a js file that default exported a Javascript object, it specified a lot ot configurations. The default path is `<project_root>/config/cybertron.config.js`. But you can put it into anywhere of your project.
 
+
 An configuration specified these optons:
 
 ###  app
@@ -104,3 +105,37 @@ module.exports = applyMiddlewares;
 ```
 
 The app instance will be passed to your function, then just call `app.use` to apply the middlewares.
+
+## apply your routes.
+Just like apply middlewares. just don't forget configure your routes path in your config file.
+
+```javascript
+const Router = require('koa-router');
+
+function applyRoutes(app) {
+  const router = new Router();
+
+  router.get('/', async (ctx) => {
+    ctx.body = 'hello world.';
+  });
+
+  app.use(router.routes());
+  app.use(router.allowedMethods());
+}
+
+module.exports = applyRoutes;
+```
+
+## add your customize script, styles, head tags, ect.
+You can use [react-helmet](https://github.com/nfl/react-helmet).
+
+## apply your own webpack configuration.
+*ATTENTION!* You cannot override default entry with yours.
+
+# Special Thanks
+
+- [React Helmet](https://github.com/nfl/react-helmet)
+- [React Loadable](https://github.com/jamiebuilds/react-loadable)
+
+# License
+MIT
