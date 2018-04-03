@@ -1,4 +1,4 @@
-const { generateCdnPath } = require('..');
+const { getBaseDir, processConfig, generateCdnPath } = require('..');
 
 describe('utils/generateCdnPath', () => {
   test('normal config', () => {
@@ -46,5 +46,106 @@ describe('utils/generateCdnPath', () => {
 
     const cdnUrl = generateCdnPath(pureHostConfig);
     expect(cdnUrl).toBe('//localhost/');
+  });
+});
+
+describe('utils/processConfig', () => {
+  const baseDir = getBaseDir();
+
+  const finalConfig = {
+    app: {
+      name: 'Kaon Config Template (production)',
+      shortName: 'rib',
+      port: 1827,
+      routes: `${baseDir}/app/routes`,
+      middlewares: `${baseDir}/app/middlewares`,
+    },
+    resources: {
+      root: `${baseDir}/public`,
+    },
+    isomorphic: {
+      routes: `${baseDir}/src/routes`,
+      store: `${baseDir}/src/store/configureStore.js`,
+      main: `${baseDir}/src/client`,
+    },
+    postcss: {
+      path: `${baseDir}/config/postcss.config.js`,
+    },
+    webpack: {
+      client: `${baseDir}/config/webpack.client.config`,
+      server: `${baseDir}/config/webpack.server.config`,
+    },
+    build: {
+      host: 'localhost',
+      port: 1827,
+      path: `${baseDir}build/`,
+      target: `${baseDir}/public/build`,
+    },
+  };
+
+  test('process normal config', () => {
+    const customizeConfig = {
+      app: {
+        name: 'Customize app name',
+        shortName: 'can',
+        port: 14159,
+        routes: '/project/path/app',
+        middlewares: '/project/path/middlewares',
+      },
+      resources: {
+        root: '/project/path/static',
+      },
+      isomorphic: {
+        routes: '/project/routes/server',
+        store: '/project/client/store/configureStore',
+        main: '/project/client/index.js',
+      },
+      webpack: {
+        client: '/project/config/webpack.client.js',
+      },
+      build: {
+        host: 'static.domain.com',
+        port: '',
+        path: '/project/build/',
+        target: '/project/build/',
+      },
+    };
+
+    const config = processConfig(customizeConfig);
+
+    expect(config).toEqual({
+      app: {
+        name: 'Customize app name',
+        shortName: 'can',
+        port: 14159,
+        routes: '/project/path/app',
+        middlewares: '/project/path/middlewares',
+      },
+      resources: {
+        root: '/project/path/static',
+      },
+      isomorphic: {
+        routes: '/project/routes/server',
+        store: '/project/client/store/configureStore',
+        main: '/project/client/index.js',
+      },
+      postcss: {
+        path: `${baseDir}/config/postcss.config.js`,
+      },
+      webpack: {
+        client: '/project/config/webpack.client.js',
+        server: `${baseDir}/config/webpack.server.config`,
+      },
+      build: {
+        host: 'static.domain.com',
+        port: '',
+        path: '/project/build/',
+        target: '/project/build/',
+      },
+    });
+  });
+  test('all with default config', () => {
+    const config = processConfig();
+    expect(config).toEqual(finalConfig);
   });
 });
