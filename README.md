@@ -31,6 +31,42 @@ yarn add kaon
 ## add your config
 Config is a js file that default exported a Javascript object, it specified a lot ot configurations. The default path is `<project_root>/config/cybertron.config.js`. But you can put it into anywhere of your project.
 
+The config file is not required, Kaon will use the default config as below:
+
+```js
+const kaonConfig = {
+  app: {
+    name: 'Kaon Config Template (production)',
+    shortName: 'rib',
+    port: 1827,
+    routes: `${baseDir}/app/routes`,
+    middlewares: `${baseDir}/app/middlewares`,
+  },
+  resources: {
+    root: `${baseDir}/public`,
+  },
+  isomorphic: {
+    routes: `${baseDir}/src/routes`,
+    store: `${baseDir}/src/store/configureStore.js`,
+    main: `${baseDir}/src/client`,
+  },
+  postcss: {
+    path: `${baseDir}/config/postcss.config.js`,
+  },
+  webpack: {
+    client: `${baseDir}/config/webpack.client.config`,
+    server: `${baseDir}/config/webpack.server.config`,
+  },
+  build: {
+    host: 'localhost',
+    port: 1592,
+    path: 'build/',
+    target: `${baseDir}/public/build`,
+  },
+};
+```
+
+
 
 An configuration specified these optons:
 
