@@ -6,13 +6,13 @@ const r = require('yargs').usage('kaon <cmd> [options]')
   .command('start [options]', 'Start kaon server!', (yargs) => {
     return yargs.options('config', {
       type: 'string',
-      default: 'config',
+      default: './config/kaon.config.js',
       describe: 'the config file',
     }).options('port', {
       type: 'string',
       default: 1592,
       describe: 'server port',
-    });
+    }).help();
   }, (argv) => {
     start(argv);
   })

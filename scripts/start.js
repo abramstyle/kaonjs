@@ -8,7 +8,7 @@ function run(options) {
   try {
     config = loadConfig(configPath);
   } catch (e) {
-    console.error('configuration can not be found.');
+    console.error('no configuration file found.');
   }
 
   if (!config) {
