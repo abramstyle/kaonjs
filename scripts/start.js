@@ -11,10 +11,6 @@ function run(options) {
     console.error('no configuration file found.');
   }
 
-  if (!config) {
-    throw new Error('config not found');
-  }
-
   const kaon = new Kaon(config);
   return kaon.build(config);
 }
