@@ -1,6 +1,5 @@
-const bootstrap = require('../lib/bootstrap');
+const Kaon = require('../lib/kaon');
 const loadConfig = require('../utils/loadConfig');
-const processConfig = require('../utils/processConfig');
 
 function run(options) {
   // const { env: { NODE_ENV: env } } = process;
@@ -10,13 +9,14 @@ function run(options) {
     config = loadConfig(configPath);
   } catch (e) {
     console.error('configuration can not be found.');
-    process.exit();
   }
 
   if (!config) {
     throw new Error('config not found');
   }
-  return bootstrap(processConfig(config));
+
+  const kaon = new Kaon(config);
+  return kaon.build(config);
 }
 
 module.exports = run;
