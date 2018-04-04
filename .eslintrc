@@ -38,7 +38,19 @@
     "import/prefer-default-export": 0,
     "import/no-dynamic-require": 0,
     "react/prefer-stateless-function": [1,{"ignorePureComponents": true}],
-    "no-underscore-dangle": ["error", { "allow": ["__DEV__", "__PROD__", "__RELEASE__", "__STAGING__", "__PRELOADED_STATE__"] }],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "__DEV__",
+          "__PROD__",
+          "__RELEASE__",
+          "__STAGING__",
+          "__PRELOADED_STATE__",
+          "__SSR__"
+        ]
+      }
+    ],
     "react/no-did-mount-set-state":0
   },
   "settings": {
@@ -61,5 +73,6 @@
     "__STAGING__": true,
     "__IS_SERVER__": true,
     "__PRELOADED_STATE__": true,
+    "__SSR__": true
   }
 }

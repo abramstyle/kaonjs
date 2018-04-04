@@ -20,13 +20,11 @@ const getRenderer = async () => async (ctx) => {
   const store = configureStore(ctx)();
   const context = {};
 
-  try {
-    await prefetch({
-      routes,
-      path: ctx.path,
-      store,
-    });
-  }
+  await prefetch({
+    routes,
+    path: ctx.path,
+    store,
+  });
 
   const state = store.getState();
   const modules = [];
@@ -51,14 +49,21 @@ const getRenderer = async () => async (ctx) => {
   const html = ReactDOMServer.renderToString(Container);
   const helmet = Helmet.renderStatic();
 
+  const allAttributes = Object.keys(helmet).reduce((attributes, key) => {
+    attributes[key] = (helmet[key] || {}).toString();
+
+    return attributes;
+  }, {});
+
+
   // console.log('modules: ', modules, stats);
-  const bundles = getBundles(stats, modules);
+  const preloadBundles = getBundles(stats, modules);
 
   return {
     html,
     state,
-    helmet,
-    bundles,
+    helmet: allAttributes,
+    preloadBundles,
     store,
   };
 };
