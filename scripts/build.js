@@ -1,5 +1,5 @@
 const loadConfig = require('../utils/loadConfig');
-const builder = require('../lib/builder');
+const Kaon = require('../lib/kaon');
 
 async function build(options) {
   // const { env: { NODE_ENV: env } } = process;
@@ -9,14 +9,14 @@ async function build(options) {
     config = loadConfig(configPath);
   } catch (e) {
     console.error('configuration can not be found.');
-    process.exit();
   }
 
   if (!config) {
     throw new Error('config not found');
   }
 
-  builder(config);
+  const kaon = new Kaon(config);
+  kaon.build();
 }
 
 module.exports = build;
