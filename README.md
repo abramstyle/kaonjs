@@ -29,7 +29,7 @@ or with yarn
 yarn add kaon
 ```
 ## add your config
-Config is a js file that default exported a Javascript object, it specified a lot ot configurations. The default path is `<project_root>/config/cybertron.config.js`. But you can put it into anywhere of your project.
+Config is a js file that default exported a Javascript object, it specified a lot ot configurations. The default path is `<project_root>/config/kaon.config.js`. But you can put it into anywhere of your project.
 
 The config file is not required, Kaon will use the default config as below:
 
