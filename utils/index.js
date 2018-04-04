@@ -48,7 +48,7 @@ function processConfig(config = {}) {
     build: {
       host: 'localhost',
       port: 1827,
-      path: '/build/',
+      path: 'build/',
       target: `${baseDir}/public/build`,
     },
   };
