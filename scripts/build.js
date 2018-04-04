@@ -11,10 +11,6 @@ async function build(options) {
     console.error('configuration can not be found.');
   }
 
-  if (!config) {
-    throw new Error('config not found');
-  }
-
   const kaon = new Kaon(config);
   kaon.build();
 }
