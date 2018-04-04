@@ -23,6 +23,7 @@ function processConfig(config = {}) {
   }
 
   const kaonConfig = {
+    ssr: true,
     app: {
       name: 'Kaon Config Template (production)',
       shortName: 'rib',

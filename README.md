@@ -35,6 +35,7 @@ The config file is not required, Kaon will use the default config as below:
 
 ```js
 const kaonConfig = {
+  ssr: true,
   app: {
     name: 'Kaon Config Template (production)',
     shortName: 'rib',
@@ -69,6 +70,8 @@ const kaonConfig = {
 
 
 An configuration specified these optons:
+### ssr
+Enable or disable server side side rendering. Disable ssr will improve start up speed.
 
 ###  app
 - app.name - The app name
@@ -123,6 +126,10 @@ const kaon = new Kaon(config);
 
 kaon.start();
 ```
+
+## environment variables
+### ENABLE_SSR
+`yes` or `no`. If select `yes`, server side rendering will be enabled, `no` will disable server side rendering temporary.
 
 ## apply your middleware.
 First, configure your middleware path, it should be a javascript file like below:
