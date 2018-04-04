@@ -17,6 +17,11 @@ function getBaseDir() {
 
 function processConfig(config = {}) {
   const baseDir = getBaseDir();
+
+  if (!objectUtils.isObject(config)) {
+    config = {};
+  }
+
   const kaonConfig = {
     app: {
       name: 'Kaon Config Template (production)',
@@ -43,7 +48,7 @@ function processConfig(config = {}) {
     build: {
       host: 'localhost',
       port: 1827,
-      path: `${baseDir}build/`,
+      path: '/build/',
       target: `${baseDir}/public/build`,
     },
   };
