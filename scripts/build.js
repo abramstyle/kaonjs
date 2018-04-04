@@ -8,11 +8,11 @@ async function build(options) {
   try {
     config = loadConfig(configPath);
   } catch (e) {
-    console.error('configuration can not be found.');
+    console.error('no configuration file found.');
   }
 
   const kaon = new Kaon(config);
-  kaon.build();
+  return kaon.build();
 }
 
 module.exports = build;

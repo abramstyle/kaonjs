@@ -2,7 +2,6 @@ const Kaon = require('../lib/kaon');
 const loadConfig = require('../utils/loadConfig');
 
 function run(options) {
-  // const { env: { NODE_ENV: env } } = process;
   const { config: configPath } = options;
   let config = null;
   try {
@@ -12,7 +11,7 @@ function run(options) {
   }
 
   const kaon = new Kaon(config);
-  return kaon.build(config);
+  return kaon.start(config);
 }
 
 module.exports = run;
