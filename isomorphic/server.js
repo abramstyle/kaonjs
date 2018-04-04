@@ -20,11 +20,13 @@ const getRenderer = async () => async (ctx) => {
   const store = configureStore(ctx)();
   const context = {};
 
-  await prefetch({
-    routes,
-    path: ctx.path,
-    store,
-  });
+  try {
+    await prefetch({
+      routes,
+      path: ctx.path,
+      store,
+    });
+  }
 
   const state = store.getState();
   const modules = [];
