@@ -1,3 +1,4 @@
+const path = require('path');
 const {
   getBaseDir, processConfig, generateCdnPath, waitFor,
 } = require('..');
@@ -55,7 +56,10 @@ describe('utils/processConfig', () => {
   const baseDir = getBaseDir();
 
   const finalConfig = {
-    ssr: true,
+    renderer: {
+      ssr: true,
+      template: path.resolve(__dirname, '../../isomorphic/template'),
+    },
     app: {
       name: 'Kaon Config Template (production)',
       shortName: 'rib',
@@ -118,7 +122,10 @@ describe('utils/processConfig', () => {
     const config = processConfig(customizeConfig);
 
     expect(config).toEqual({
-      ssr: false,
+      renderer: {
+        ssr: true,
+        template: path.resolve(__dirname, '../../isomorphic/template'),
+      },
       app: {
         name: 'Customize app name',
         shortName: 'can',
