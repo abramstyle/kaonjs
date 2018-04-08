@@ -10,21 +10,22 @@ import Loadable from 'react-loadable';
 import { getBundles } from 'react-loadable/webpack';
 
 import prefetch from '../utils/prefetch';
+import { waitFor } from '../utils/';
 
 const {
   stats, configureStore, routes, App,
 } = require('./clientConfig');
 
-const getRenderer = async () => async (ctx) => {
+const getRenderer = () => async (ctx) => {
   // const context = {};
   const store = configureStore(ctx)();
   const context = {};
 
-  await prefetch({
+  await waitFor(prefetch({
     routes,
     path: ctx.path,
     store,
-  });
+  }));
 
   const state = store.getState();
   const modules = [];

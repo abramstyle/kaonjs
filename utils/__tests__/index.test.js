@@ -1,4 +1,6 @@
-const { getBaseDir, processConfig, generateCdnPath } = require('..');
+const {
+  getBaseDir, processConfig, generateCdnPath, waitFor,
+} = require('..');
 
 describe('utils/generateCdnPath', () => {
   test('normal config', () => {
@@ -53,6 +55,7 @@ describe('utils/processConfig', () => {
   const baseDir = getBaseDir();
 
   const finalConfig = {
+    ssr: true,
     app: {
       name: 'Kaon Config Template (production)',
       shortName: 'rib',
@@ -77,14 +80,15 @@ describe('utils/processConfig', () => {
     },
     build: {
       host: 'localhost',
-      port: 1827,
-      path: `${baseDir}build/`,
+      port: 1592,
+      path: 'build/',
       target: `${baseDir}/public/build`,
     },
   };
 
   test('process normal config', () => {
     const customizeConfig = {
+      ssr: false,
       app: {
         name: 'Customize app name',
         shortName: 'can',
@@ -114,6 +118,7 @@ describe('utils/processConfig', () => {
     const config = processConfig(customizeConfig);
 
     expect(config).toEqual({
+      ssr: false,
       app: {
         name: 'Customize app name',
         shortName: 'can',
@@ -147,5 +152,34 @@ describe('utils/processConfig', () => {
   test('all with default config', () => {
     const config = processConfig();
     expect(config).toEqual(finalConfig);
+  });
+});
+
+describe('waitFor', () => {
+  test('waitFor will resolve promise result.', async () => {
+    expect.assertions(1);
+    const get = new Promise(resolve => resolve('success'));
+
+    const result = await waitFor(get);
+    expect(result).toBe('success');
+  });
+
+  test('waitFor will throw error', async () => {
+    expect.assertions(1);
+    const getError = new Promise((resolve, reject) => {
+      const error = new Error('failure');
+      reject(error);
+    });
+
+    function getResult() {
+      return waitFor(getError);
+    }
+
+    try {
+      await waitFor(getResult());
+    } catch (e) {
+      const error = new Error('failure');
+      expect(e).toEqual(error);
+    }
   });
 });
