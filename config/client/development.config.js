@@ -9,12 +9,10 @@ const getConfig = (config) => {
   const serverHost = config.build.host || '0.0.0.0';
   const serverPort = config.build.port || 1592;
   return {
-  // mode: 'development',
+    mode: 'development',
     entry: {
       app: [
         'react-hot-loader/patch',
-        // support async & await
-        // 'babel-polyfill',
         config.isomorphic.main,
       ],
       commons: [
@@ -24,8 +22,7 @@ const getConfig = (config) => {
         'react-dom',
         'react-router',
         'react-router-dom',
-        'react-helmet',
-        'react-loadable',
+        'react-helmet', 'react-loadable',
       ],
     },
     output: {
@@ -131,17 +128,7 @@ const getConfig = (config) => {
         useHashIndex: true,
       }),
       new webpack.HotModuleReplacementPlugin(),
-      // enable HMR globally
-
       new webpack.NamedModulesPlugin(),
-      // prints more readable module names in the browser console on HMR updates
-      new webpack.optimize.CommonsChunkPlugin({
-        names: ['commons', 'manifest'],
-        minChunks(module) {
-        // this assumes your vendor imports exist in the node_modules directory
-          return module.context && module.context.indexOf('node_modules') !== -1;
-        },
-      }),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
@@ -156,11 +143,17 @@ const getConfig = (config) => {
       new ReactLoadablePlugin({
         filename: `${config.build.target}/react-loadable.json`,
       }),
-    // new HtmlWebpackPlugin({ // Also generate a test.html
-    //   template: './src/index.pug',
-    //   filename: 'index.html',
-    // }),
     ],
+    optimization: {
+      namedModules: true,
+      splitChunks: {
+        name: 'commons',
+        minChunks(module) {
+        // this assumes your vendor imports exist in the node_modules directory
+          return module.context && module.context.indexOf('node_modules') !== -1;
+        },
+      },
+    },
   };
 };
 

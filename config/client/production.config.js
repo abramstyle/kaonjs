@@ -6,6 +6,7 @@ const { generateCdnPath } = require('../../utils');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const getConfig = config => ({
+  mode: 'production',
   entry: {
     app: [
       // 'babel-polyfill',
@@ -102,14 +103,6 @@ const getConfig = config => ({
 
     new webpack.NamedModulesPlugin(),
 
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['commons', 'manifest'],
-      filename: '[name]-[hash].bundle.js',
-      minChunks(module) {
-        // this assumes your vendor imports exist in the node_modules directory
-        return module.context && module.context.indexOf('node_modules') !== -1;
-      },
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
@@ -132,6 +125,16 @@ const getConfig = config => ({
     }),
     new ManifestPlugin(),
   ],
+  optimization: {
+    namedModules: true,
+    splitChunks: {
+      name: 'commons',
+      minChunks(module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+    },
+  },
 });
 
 module.exports = getConfig;
