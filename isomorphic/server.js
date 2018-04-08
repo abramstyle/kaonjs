@@ -13,13 +13,14 @@ import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
 
 const {
-  stats, configureStore, routes, App,
+  stats, configureStore, getRoutes, App,
 } = require('./clientConfig');
 
 const getRenderer = () => async (ctx) => {
   // const context = {};
   const store = configureStore(ctx)();
   const context = {};
+  const routes = typeof getRoutes === 'function' ? getRoutes() : getRoutes;
 
   await waitFor(prefetch({
     routes,
@@ -39,6 +40,7 @@ const getRenderer = () => async (ctx) => {
       <Provider store={store}>
         <Router
           location={ctx.url}
+          basename={ctx.state.basename}
           context={context}
         >
           {app}

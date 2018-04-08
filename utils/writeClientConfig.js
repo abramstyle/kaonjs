@@ -8,12 +8,12 @@ const template = (config) => {
   const { isomorphic, build } = config;
   const { routes, store, app } = isomorphic;
   return `
-      const { default: routes } = require('${routes}');
+      const { default: getRoutes } = require('${routes}');
       const { default: configureStore } = require('${store}');
       const stats = require('${build.target}/react-loadable.json');
       const { default: App } = ${!!app} ? require('${app}') : {};
 
-      exports.routes = routes;
+      exports.getRoutes = getRoutes;
       exports.configureStore = configureStore;
       exports.stats = stats;
       exports.App = App;
