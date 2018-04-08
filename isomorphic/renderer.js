@@ -12,7 +12,7 @@ const getRenderer = (config) => {
   }
 
   const { default: getServerRenderer } = require(`${config.build.target}/main`);
-  isomorphic.render = require('../isomorphic/template');
+  isomorphic.render = require(config.renderer.template);
   isomorphic.serverRenderer = getServerRenderer(config);
 
   return async (ctx) => {

@@ -1,4 +1,5 @@
 const { objectUtils } = require('@abramstyle/utils');
+const path = require('path');
 
 function generateCdnPath(config) {
   const serverHost = config.build.host || config.host || '0.0.0.0';
@@ -23,7 +24,10 @@ function processConfig(config = {}) {
   }
 
   const kaonConfig = {
-    ssr: true,
+    renderer: {
+      ssr: true,
+      template: path.resolve(__dirname, '../isomorphic/template'),
+    },
     app: {
       name: 'Kaon Config Template (production)',
       shortName: 'rib',
