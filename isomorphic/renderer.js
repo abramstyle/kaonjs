@@ -19,7 +19,7 @@ const getRenderer = (config) => {
     const manifest = require(`${config.build.target}/manifest.json`);
 
     const scripts = {
-      manifest: manifest['manifest.js'],
+      // manifest: manifest['manifest.js'],
       commons: manifest['commons.js'],
       app: manifest['app.js'],
     };
