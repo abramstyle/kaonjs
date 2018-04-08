@@ -1,5 +1,7 @@
+const { arrayUtils } = require('@abramstyle/utils');
+
 const renderHtml = (data = {}) => {
-  const bundles = (data.bundles || [])
+  const bundles = arrayUtils.uniq((data.bundles || []))
     .map(bundle => `<script src="${bundle}"></script>`)
     .join('');
   const styles = (data.styles || [])
