@@ -46,6 +46,7 @@
           "__PROD__",
           "__RELEASE__",
           "__STAGING__",
+          "__IS_SERVER__",
           "__PRELOADED_STATE__",
           "__SSR__"
         ]
