@@ -16,7 +16,7 @@ function getAssets(manifest = {}, preloadBundles = [], config) {
         bundles.push(item);
       }
       if (item.endsWith('.css')) {
-        styles.push(item);
+        styles.unshift(item);
       }
     });
 
