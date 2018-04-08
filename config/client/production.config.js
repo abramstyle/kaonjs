@@ -17,7 +17,6 @@ const getConfig = config => ({
       'react-redux',
       'react-dom',
       'react-router',
-      'react-router-config',
       'react-router-dom',
       'react-helmet',
       'react-loadable',

@@ -20,7 +20,7 @@ const getRenderer = () => async (ctx) => {
   // const context = {};
   const store = configureStore(ctx)();
   const context = {};
-  const routes = typeof getRoutes === 'function' ? getRoutes() : getRoutes;
+  const routes = typeof getRoutes === 'function' ? getRoutes(ctx) : getRoutes;
 
   await waitFor(prefetch({
     routes,
