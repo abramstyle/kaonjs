@@ -73,6 +73,9 @@ An configuration specified these optons:
 ### ssr
 Enable or disable server side side rendering. Disable ssr will improve start up speed.
 
+### i18n
+
+
 ###  app
 - app.name - The app name
 - app.shortName - The short app name.

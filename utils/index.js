@@ -55,12 +55,28 @@ function processConfig(config = {}) {
   };
 
   Object.keys(kaonConfig).forEach((key) => {
-    Object.assign(kaonConfig[key], config[key] || {});
+    const item = kaonConfig[key];
+    const otherItem = config[key];
+    if (objectUtils.isObject(item)) {
+      Object.assign(item, otherItem || {});
+    } else if (Object.hasOwnProperty.call(config, key)) {
+      kaonConfig[key] = config[key];
+    }
   });
 
   return kaonConfig;
 }
 
+// an function wrap async and await function, catch result as default, and throw it
+function waitFor(promise) {
+  return promise
+    .then(result => result)
+    .catch((error) => {
+      throw error;
+    });
+}
+
 exports.generateCdnPath = generateCdnPath;
 exports.getBaseDir = getBaseDir;
 exports.processConfig = processConfig;
+exports.waitFor = waitFor;
