@@ -1,6 +1,6 @@
 {
   "name": "kaonjs",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "Kaon.js is a react isomorphic framework, render your code from server side, with automatic code splitting",
   "main": "index.js",
   "repository": "https://github.com/abramstyle/kaonjs",
