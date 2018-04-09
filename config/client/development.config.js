@@ -75,9 +75,6 @@ const getConfig = (config) => {
         test: /\.css$/,
         use: [{
           loader: 'style-loader',
-          options: {
-            useable: true,
-          },
         }, {
           loader: 'css-loader',
           options: {
