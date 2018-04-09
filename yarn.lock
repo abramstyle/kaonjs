@@ -2023,9 +2023,9 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.npmjs.org/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-loader@^0.28.7:
-  version "0.28.10"
-  resolved "https://registry.npmjs.org/css-loader/-/css-loader-0.28.10.tgz#40282e79230f7bcb4e483efa631d670b735ebf42"
+css-loader@^0.28.11:
+  version "0.28.11"
+  resolved "https://registry.npmjs.org/css-loader/-/css-loader-0.28.11.tgz#c3f9864a700be2711bb5a2462b2389b1a392dab7"
   dependencies:
     babel-code-frame "^6.26.0"
     css-selector-tokenizer "^0.7.0"
@@ -3018,7 +3018,7 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
-file-loader@^1.1.6:
+file-loader@^1.1.11:
   version "1.1.11"
   resolved "https://registry.npmjs.org/file-loader/-/file-loader-1.1.11.tgz#6fe886449b0f2a936e43cabaac0cdbfb369506f8"
   dependencies:
@@ -5089,11 +5089,7 @@ mime@1.4.1:
   version "1.4.1"
   resolved "https://registry.npmjs.org/mime/-/mime-1.4.1.tgz#121f9ebc49e3766f311a76e1fa1c8003c4b03aa6"
 
-mime@^1.4.1:
-  version "1.6.0"
-  resolved "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
-
-mime@^2.1.0:
+mime@^2.0.3, mime@^2.1.0:
   version "2.2.2"
   resolved "https://registry.npmjs.org/mime/-/mime-2.2.2.tgz#6b4c109d88031d7b5c23635f5b923da336d79121"
 
@@ -5885,9 +5881,9 @@ postcss-load-plugins@^2.3.0:
     cosmiconfig "^2.1.1"
     object-assign "^4.1.0"
 
-postcss-loader@^2.0.9:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/postcss-loader/-/postcss-loader-2.1.1.tgz#208935af3b1d65e1abb1a870a912dd12e7b36895"
+postcss-loader@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.npmjs.org/postcss-loader/-/postcss-loader-2.1.3.tgz#eb210da734e475a244f76ccd61f9860f5bb3ee09"
   dependencies:
     loader-utils "^1.1.0"
     postcss "^6.0.0"
@@ -6873,13 +6869,7 @@ sax@^1.2.4, sax@~1.2.1:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-schema-utils@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
-  dependencies:
-    ajv "^5.0.0"
-
-schema-utils@^0.4.0, schema-utils@^0.4.2, schema-utils@^0.4.5:
+schema-utils@^0.4.0, schema-utils@^0.4.2, schema-utils@^0.4.3, schema-utils@^0.4.5:
   version "0.4.5"
   resolved "https://registry.npmjs.org/schema-utils/-/schema-utils-0.4.5.tgz#21836f0608aac17b78f9e3e24daff14a5ca13a3e"
   dependencies:
@@ -7352,12 +7342,12 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-style-loader@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.npmjs.org/style-loader/-/style-loader-0.19.1.tgz#591ffc80bcefe268b77c5d9ebc0505d772619f85"
+style-loader@^0.20.3:
+  version "0.20.3"
+  resolved "https://registry.npmjs.org/style-loader/-/style-loader-0.20.3.tgz#ebef06b89dec491bcb1fdb3452e913a6fd1c10c4"
   dependencies:
-    loader-utils "^1.0.2"
-    schema-utils "^0.3.0"
+    loader-utils "^1.1.0"
+    schema-utils "^0.4.5"
 
 sugarss@^1.0.0:
   version "1.0.1"
@@ -7742,13 +7732,13 @@ url-join@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/url-join/-/url-join-4.0.0.tgz#4d3340e807d3773bda9991f8305acdcc2a665d2a"
 
-url-loader@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.npmjs.org/url-loader/-/url-loader-0.6.2.tgz#a007a7109620e9d988d14bce677a1decb9a993f7"
+url-loader@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/url-loader/-/url-loader-1.0.1.tgz#61bc53f1f184d7343da2728a1289ef8722ea45ee"
   dependencies:
-    loader-utils "^1.0.2"
-    mime "^1.4.1"
-    schema-utils "^0.3.0"
+    loader-utils "^1.1.0"
+    mime "^2.0.3"
+    schema-utils "^0.4.3"
 
 url-parse@1.0.x:
   version "1.0.5"
