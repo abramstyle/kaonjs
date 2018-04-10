@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@7rulnik/react-loadable@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.npmjs.org/@7rulnik/react-loadable/-/react-loadable-5.3.2.tgz#6278e05b0d2baeaaa9739e89d6ebe1896b0b9a31"
+  dependencies:
+    prop-types "^15.5.0"
+
 "@abramstyle/utils@^0.8.15":
   version "0.8.15"
   resolved "https://registry.npmjs.org/@abramstyle/utils/-/utils-0.8.15.tgz#445714a7a3ce720438d3d0cd1ad569d5959d1cc1"

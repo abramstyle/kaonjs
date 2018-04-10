@@ -19,6 +19,8 @@ Kaon is a Decepticon-controlled city-state in the southern hemisphere of Cybertr
 - react-loadable
 - babel
 
+⚠️⚠️⚠️  WARNING!!! You should replace your 'react-loadable' with '@7rulnik/react-loadable/webpack'. This package resolved API problems with webpack v4.
+
 # Usage
 ## install
 ```

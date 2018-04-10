@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@7rulnik/react-loadable": "^5.3.2",
     "@abramstyle/utils": "^0.8.15",
     "autoprefixer": "^7.2.3",
     "babel": "^6.23.0",
