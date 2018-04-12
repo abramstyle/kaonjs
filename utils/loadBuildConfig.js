@@ -1,5 +1,7 @@
 const { objectUtils } = require('@abramstyle/utils');
 const { mergeWebpack } = require('./mergeWebpack');
+const { debugConfig: debug } = require('../lib/debug');
+const { inspect } = require('util');
 
 function buildConfig(configBuilder, appConfig) {
   if (!configBuilder) return null;
@@ -54,6 +56,11 @@ function loadBuildConfig(appConfig) {
       console.warn('webpack config found, but load file failed.');
     }
   }
+
+  debug('client config:');
+  debug(inspect(buildConfig.client, { colors: true, depth: null }));
+  debug('server config:');
+  debug(inspect(buildConfig.server, { colors: true, depth: null }));
 
   return config;
 }
