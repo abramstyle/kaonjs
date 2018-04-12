@@ -58,9 +58,9 @@ function loadBuildConfig(appConfig) {
   }
 
   debug('client config:');
-  debug(inspect(buildConfig.client, { colors: true, depth: null }));
+  debug(inspect(config.client, { colors: true, depth: null }));
   debug('server config:');
-  debug(inspect(buildConfig.server, { colors: true, depth: null }));
+  debug(inspect(config.server, { colors: true, depth: null }));
 
   return config;
 }
