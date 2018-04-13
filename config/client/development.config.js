@@ -2,7 +2,7 @@ require('dotenv').config();
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 // const WriteFilePlugin = require('write-file-webpack-plugin');
-const { ReactLoadablePlugin } = require('react-loadable/webpack');
+const { ReactLoadablePlugin } = require('@7rulnik/react-loadable/webpack');
 const { generateCdnPath } = require('../../utils');
 
 const getConfig = (config) => {
@@ -22,7 +22,8 @@ const getConfig = (config) => {
         'react-dom',
         'react-router',
         'react-router-dom',
-        'react-helmet', 'react-loadable',
+        'react-helmet',
+        '@7rulnik/react-loadable',
       ],
     },
     output: {

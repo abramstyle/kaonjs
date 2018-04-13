@@ -6,8 +6,8 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import Helmet from 'react-helmet';
-import Loadable from 'react-loadable';
-import { getBundles } from 'react-loadable/webpack';
+import Loadable from '@7rulnik/react-loadable';
+import { getBundles } from '@7rulnik/react-loadable/webpack';
 
 import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
