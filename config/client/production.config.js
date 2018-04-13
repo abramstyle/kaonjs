@@ -22,7 +22,7 @@ const getConfig = config => ({
       'react-router',
       'react-router-dom',
       'react-helmet',
-      'react-loadable',
+      '@7rulnik/react-loadable',
     ],
   },
   output: {
