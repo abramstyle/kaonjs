@@ -23,7 +23,7 @@ const getConfig = (config) => {
     .reduce((items, mod) => {
       let names;
       if (mod.startsWith('@')) {
-        names = fs.readdirSync(mod).map(name => `${mod}${name}`);
+        names = fs.readdirSync(path.resolve(process.cwd(), 'node_modules', mod)).map(name => `${mod}/${name}`);
       } else {
         names = [mod];
       }
