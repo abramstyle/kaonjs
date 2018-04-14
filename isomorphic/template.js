@@ -24,10 +24,7 @@ const renderHtml = (data = {}) => {
             <script>
               window.__PRELOADED_STATE__ = ${data.state || '{}'};
             </script>
-            <script src="${data.scripts.manifest}"></script>
-            <script src="${data.scripts.commons}"></script>
             ${bundles || ''}
-            <script src="${data.scripts.app}"></script>
             ${data.helmet.script || ''}
         </body>
     </html>
