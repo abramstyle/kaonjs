@@ -6,7 +6,10 @@ function getAssets(manifest = {}, preloadBundles = [], config) {
     .map(key => manifest[key])
     .filter(asset => asset.endsWith('.css'));
 
-  const bundles = [];
+  const bundles = [
+    manifest['manifest.js'],
+    manifest['commons.js'],
+  ];
 
   preloadBundles
     .filter(bundle => bundle && (bundle.file.endsWith('.js') || bundle.file.endsWith('.css')))
@@ -19,6 +22,10 @@ function getAssets(manifest = {}, preloadBundles = [], config) {
         styles.push(item);
       }
     });
+
+  if (bundles.indexOf('app.js') === 1) {
+    bundles.push(manifest['app.js']);
+  }
 
 
   return {
