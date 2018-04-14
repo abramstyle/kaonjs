@@ -1,14 +1,12 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const { generateCdnPath } = require('../../utils');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const getConfig = config => ({
-  mode: 'production',
   entry: {
     app: [
       // 'babel-polyfill',
@@ -26,15 +24,15 @@ const getConfig = config => ({
     ],
   },
   output: {
-    filename: '[name]-[contenthash].bundle.js',
+    filename: '[name]-[chunkhash].bundle.js',
 
-    chunkFilename: '[name]-[contenthash].chunk.js',
+    chunkFilename: '[name]-[chunkhash].chunk.js',
 
     path: config.build.target,
 
     publicPath: generateCdnPath(config),
     // necessary for HMR to know where to load the hot update chunks
-    sourceMapFilename: '[name]-[contenthash].js.map',
+    sourceMapFilename: '[name]-[chunkhash].js.map',
   },
 
   // context: resolve('sources'),
@@ -54,11 +52,9 @@ const getConfig = config => ({
       exclude: /node_modules/,
     }, {
       test: /\.css$/,
-      use: [
-        {
-          loader: MiniCssExtractPlugin.loader,
-        },
-        {
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
           loader: 'css-loader',
           options: {
             sourceMap: true,
@@ -75,6 +71,7 @@ const getConfig = config => ({
             },
           },
         }],
+      }),
     }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       use: {
@@ -101,10 +98,8 @@ const getConfig = config => ({
   },
 
   plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
-    // enable HMR globally
-
-    // new webpack.NamedModulesPlugin(),
+    new ManifestPlugin(),
+    new webpack.NamedModulesPlugin(),
 
     new webpack.DefinePlugin({
       'process.env': {
@@ -117,43 +112,23 @@ const getConfig = config => ({
       __RELEASE__: JSON.stringify(__RELEASE__),
       __PROD__: JSON.stringify(__PROD__),
     }),
-    // new ExtractTextPlugin({
-    //   filename: '[name]-[contenthash].css',
-    //   allChunks: true,
-    // }),
-    new MiniCssExtractPlugin({
-      filename: '[name]-[contenthash].css',
-      chunkFilename: '[id]-[contenthash].css',
-    }),
     // prints more readable module names in the browser console on HMR updates
     new ReactLoadablePlugin({
       filename: `${config.build.target}/react-loadable.json`,
     }),
-    new ManifestPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['commons', 'manifest'],
+      minChunks(module) {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+    }),
+    new ExtractTextPlugin({
+      filename: '[name]-[contenthash].css',
+      allChunks: true,
+    }),
+    new UglifyJSPlugin(),
   ],
-  optimization: {
-    namedModules: true,
-    splitChunks: {
-      name: 'commons',
-      minChunks: 2,
-      // cacheGroups: {
-      //   styles: {
-      //     name: 'styles',
-      //     test: /\.css$/,
-      //     chunks: 'all',
-      //     enforce: true,
-      //   },
-      // },
-    },
-    minimizer: [
-      new OptimizeCSSAssetsPlugin({}),
-      new UglifyJSPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true, // set to true if you want JS source maps
-      }),
-    ],
-  },
 });
 
 module.exports = getConfig;

@@ -9,7 +9,6 @@ const getConfig = (config) => {
   const serverHost = config.build.host || '0.0.0.0';
   const serverPort = config.build.port || 1592;
   return {
-    mode: 'development',
     entry: {
       app: [
         'react-hot-loader/patch',
@@ -125,7 +124,7 @@ const getConfig = (config) => {
       //   useHashIndex: true,
       // }),
       new webpack.HotModuleReplacementPlugin(),
-      // new webpack.NamedModulesPlugin(),
+      new webpack.NamedModulesPlugin(),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
@@ -140,14 +139,14 @@ const getConfig = (config) => {
       new ReactLoadablePlugin({
         filename: `${config.build.target}/react-loadable.json`,
       }),
+      new webpack.optimize.CommonsChunkPlugin({
+        names: ['commons', 'manifest'],
+        minChunks(module) {
+        // this assumes your vendor imports exist in the node_modules directory
+          return module.context && module.context.indexOf('node_modules') !== -1;
+        },
+      }),
     ],
-    optimization: {
-      namedModules: true,
-      splitChunks: {
-        name: 'commons',
-        minChunks: 2,
-      },
-    },
   };
 };
 
