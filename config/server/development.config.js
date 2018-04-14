@@ -21,7 +21,17 @@ const getConfig = (config) => {
     .readdirSync(nodeModules)
     // .filter(x => !/\.bin|react-loadable/.test(x))
     .reduce((items, mod) => {
-      items[mod] = `commonjs ${mod}`;
+      let names;
+      if (mod.startsWith('@')) {
+        names = fs.readdirSync(mod);
+      } else {
+        names = [mod];
+      }
+
+      names.forEach((name) => {
+        items[name] = `commonjs ${name}`;
+      });
+
       return items;
     }, {});
 
