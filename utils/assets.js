@@ -12,11 +12,11 @@ function getAssets(manifest = {}, preloadBundles = [], config) {
     .filter(bundle => bundle && (bundle.file.endsWith('.js') || bundle.file.endsWith('.css')))
     .map(bundle => `${cdnPath}${bundle.file}`)
     .forEach((item) => {
-      if (item.endsWith('.js')) {
+      if (item.endsWith('.js') && bundles.indexOf(item) === -1) {
         bundles.push(item);
       }
-      if (item.endsWith('.css')) {
-        styles.unshift(item);
+      if (item.endsWith('.css') && styles.indexOf(item) === -1) {
+        styles.push(item);
       }
     });
 
