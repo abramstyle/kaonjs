@@ -5,17 +5,15 @@ const path = require('path');
 const ISOMORPHIC_PATH = '../isomorphic/clientConfig.js';
 
 const template = (config) => {
-  const { isomorphic, build } = config;
+  const { isomorphic } = config;
   const { routes, store, app } = isomorphic;
   return `
       const { default: getRoutes } = require('${routes}');
       const { default: configureStore } = require('${store}');
-      const stats = require('${build.target}/react-loadable.json');
       const { default: App } = ${!!app} ? require('${app}') : {};
 
       exports.getRoutes = getRoutes;
       exports.configureStore = configureStore;
-      exports.stats = stats;
       exports.App = App;
     `;
 };
