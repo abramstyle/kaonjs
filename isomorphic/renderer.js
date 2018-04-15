@@ -41,7 +41,6 @@ const getRenderer = (config) => {
         helmet,
       });
 
-      console.log('loadableState: ', loadableState.getScriptTag());
       debug(inspect(assets, { colors: true, depth: null }));
 
       Object.assign(renderProps, {

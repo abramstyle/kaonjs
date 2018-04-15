@@ -13,7 +13,7 @@ import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
 
 const {
-  stats, configureStore, getRoutes, App,
+  configureStore, getRoutes, App,
 } = require('./clientConfig');
 
 const getRenderer = () => async (ctx) => {
@@ -29,7 +29,6 @@ const getRenderer = () => async (ctx) => {
   }));
 
   const state = store.getState();
-  const modules = [];
 
   const app = App ? (
     <App />
@@ -57,9 +56,6 @@ const getRenderer = () => async (ctx) => {
     return attributes;
   }, {});
 
-
-  // console.log('modules: ', modules, stats);
-  // const preloadBundles = getBundles(stats, modules);
 
   return {
     html,
