@@ -6,14 +6,16 @@ const { waitFor } = require('../utils/');
 const getRenderer = (config) => {
   // invalidate cache and require fresh cache
   const isomorphic = {};
-  if (__DEV__) {
-    console.log('delete main');
-    delete require.cache[require.resolve(`${config.build.target}/main`)];
-  }
+  if (__SSR__) {
+    if (__DEV__) {
+      console.log('delete main');
+      delete require.cache[require.resolve(`${config.build.target}/main`)];
+    }
 
-  const { default: getServerRenderer } = require(`${config.build.target}/main`);
+    const { default: getServerRenderer } = require(`${config.build.target}/main`);
+    isomorphic.serverRenderer = getServerRenderer(config);
+  }
   isomorphic.render = require(config.renderer.template);
-  isomorphic.serverRenderer = getServerRenderer(config);
 
   return async (ctx) => {
     const manifest = require(`${config.build.target}/manifest.json`);
@@ -25,9 +27,12 @@ const getRenderer = (config) => {
     debug('manifest:');
     debug(inspect(manifest, { colors: true, depth: null }));
 
+
+    const assets = getAssets(manifest, config);
+    Object.assign(renderProps, assets);
     if (__SSR__) {
       const {
-        html, state, helmet, preloadBundles,
+        html, state, helmet, loadableState,
       } = await waitFor(isomorphic.serverRenderer(ctx));
 
       Object.assign(renderProps, {
@@ -36,11 +41,12 @@ const getRenderer = (config) => {
         helmet,
       });
 
-      const assets = getAssets(manifest, preloadBundles, config);
-      debug('assets:');
+      console.log('loadableState: ', loadableState.getScriptTag());
       debug(inspect(assets, { colors: true, depth: null }));
 
-      Object.assign(renderProps, assets);
+      Object.assign(renderProps, {
+        loadableState: loadableState.getScriptTag(),
+      });
     }
 
 

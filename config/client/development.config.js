@@ -1,8 +1,8 @@
 require('dotenv').config();
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
-// const WriteFilePlugin = require('write-file-webpack-plugin');
-const { ReactLoadablePlugin } = require('react-loadable/webpack');
+const WriteFilePlugin = require('write-file-webpack-plugin');
+// const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const { generateCdnPath } = require('../../utils');
 
 const getConfig = (config) => {
@@ -21,7 +21,8 @@ const getConfig = (config) => {
         'react-dom',
         'react-router',
         'react-router-dom',
-        'react-helmet', 'react-loadable',
+        'react-helmet',
+        'loadable-components',
       ],
     },
     output: {
@@ -118,11 +119,11 @@ const getConfig = (config) => {
 
     plugins: [
       new ManifestPlugin(),
-      // new WriteFilePlugin({
-      // // Write only files that have ".json" extension.
-      //   test: /\.json/,
-      //   useHashIndex: true,
-      // }),
+      new WriteFilePlugin({
+      // Write only files that have ".json" extension.
+        test: /\.json/,
+        useHashIndex: true,
+      }),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
       new webpack.DefinePlugin({
@@ -136,9 +137,9 @@ const getConfig = (config) => {
         __RELEASE__: JSON.stringify(__RELEASE__),
         __PROD__: JSON.stringify(__PROD__),
       }),
-      new ReactLoadablePlugin({
-        filename: `${config.build.target}/react-loadable.json`,
-      }),
+      // new ReactLoadablePlugin({
+      //   filename: `${config.build.target}/react-loadable.json`,
+      // }),
       new webpack.optimize.CommonsChunkPlugin({
         names: ['commons', 'manifest'],
         minChunks(module) {
