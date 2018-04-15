@@ -4,7 +4,8 @@ function getAssets(manifest = {}) {
   // const cdnPath = generateCdnPath(config);
   const styles = Object.keys(manifest)
     .map(key => manifest[key])
-    .filter(asset => asset.endsWith('.css'));
+    .filter(asset => asset.endsWith('.css'))
+    .reverse();
 
   const bundles = [
     manifest['manifest.js'],
