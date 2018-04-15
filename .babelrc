@@ -13,7 +13,6 @@
   "plugins": [
     "transform-runtime",
     "loadable-components/babel",
-    "node-dynamic-import",
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
     }],
