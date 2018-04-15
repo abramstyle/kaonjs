@@ -24,6 +24,7 @@ const renderHtml = (data = {}) => {
             <script>
               window.__PRELOADED_STATE__ = ${data.state || '{}'};
             </script>
+            ${data.loadableState || ''}
             ${bundles || ''}
             ${data.helmet.script || ''}
         </body>

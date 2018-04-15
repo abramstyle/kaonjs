@@ -6,8 +6,8 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import Helmet from 'react-helmet';
-import Loadable from 'react-loadable';
-import { getBundles } from 'react-loadable/webpack';
+import { getLoadableState } from 'loadable-components/server';
+// import { getBundles } from 'loadable-components/webpack';
 
 import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
@@ -36,19 +36,18 @@ const getRenderer = () => async (ctx) => {
   ) : renderRoutes(routes);
 
   const Container = (
-    <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-      <Provider store={store}>
-        <Router
-          location={ctx.url}
-          basename={ctx.state.basename}
-          context={context}
-        >
-          {app}
-        </Router>
-      </Provider>
-    </Loadable.Capture>
+    <Provider store={store}>
+      <Router
+        location={ctx.url}
+        basename={ctx.state.basename}
+        context={context}
+      >
+        {app}
+      </Router>
+    </Provider>
   );
 
+  const loadableState = await getLoadableState(Container);
   const html = ReactDOMServer.renderToString(Container);
   const helmet = Helmet.renderStatic();
 
@@ -60,13 +59,14 @@ const getRenderer = () => async (ctx) => {
 
 
   // console.log('modules: ', modules, stats);
-  const preloadBundles = getBundles(stats, modules);
+  // const preloadBundles = getBundles(stats, modules);
 
   return {
     html,
     state,
     helmet: allAttributes,
-    preloadBundles,
+    // preloadBundles,
+    loadableState,
     store,
   };
 };
