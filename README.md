@@ -16,7 +16,7 @@ Kaon is a Decepticon-controlled city-state in the southern hemisphere of Cybertr
 - webpack
 - postcss
 - react-hot-loader
-- react-loadable
+- loadable-components
 - babel
 
 # Usage
@@ -177,11 +177,6 @@ You can use [react-helmet](https://github.com/nfl/react-helmet).
 
 ## apply your own webpack configuration.
 *ATTENTION!* You cannot override default entry with yours.
-
-# Special Thanks
-
-- [React Helmet](https://github.com/nfl/react-helmet)
-- [React Loadable](https://github.com/jamiebuilds/react-loadable)
 
 # License
 MIT
