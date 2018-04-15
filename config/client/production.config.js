@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const { generateCdnPath } = require('../../utils');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
@@ -20,7 +19,6 @@ const getConfig = config => ({
       'react-router',
       'react-router-dom',
       'react-helmet',
-      'react-loadable',
     ],
   },
   output: {
@@ -109,10 +107,6 @@ const getConfig = config => ({
       __RELEASE__: JSON.stringify(__RELEASE__),
       __PROD__: JSON.stringify(__PROD__),
     }),
-    // prints more readable module names in the browser console on HMR updates
-    // new ReactLoadablePlugin({
-    //   filename: `${config.build.target}/react-loadable.json`,
-    // }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['commons', 'manifest'],
       minChunks(module) {
