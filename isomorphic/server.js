@@ -6,8 +6,6 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import Helmet from 'react-helmet';
-import Loadable from 'react-loadable';
-import { getBundles } from 'react-loadable/webpack';
 
 import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
@@ -36,17 +34,15 @@ const getRenderer = () => async (ctx) => {
   ) : renderRoutes(routes);
 
   const Container = (
-    <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-      <Provider store={store}>
-        <Router
-          location={ctx.url}
-          basename={ctx.state.basename}
-          context={context}
-        >
-          {app}
-        </Router>
-      </Provider>
-    </Loadable.Capture>
+    <Provider store={store}>
+      <Router
+        location={ctx.url}
+        basename={ctx.state.basename}
+        context={context}
+      >
+        {app}
+      </Router>
+    </Provider>
   );
 
   const html = ReactDOMServer.renderToString(Container);
@@ -58,15 +54,10 @@ const getRenderer = () => async (ctx) => {
     return attributes;
   }, {});
 
-
-  // console.log('modules: ', modules, stats);
-  const preloadBundles = getBundles(stats, modules);
-
   return {
     html,
     state,
     helmet: allAttributes,
-    preloadBundles,
     store,
   };
 };

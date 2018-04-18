@@ -12,7 +12,13 @@ async function build(options) {
   }
 
   const kaon = new Kaon(config);
-  return kaon.build();
+  try {
+    await kaon.build();
+  } catch (e) {
+    console.log('build failed: ');
+    console.error(e);
+    process.exit(1);
+  }
 }
 
 module.exports = build;

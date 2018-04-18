@@ -12,7 +12,6 @@
   ],
   "plugins": [
     "transform-runtime",
-    "react-loadable/babel",
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
     }],

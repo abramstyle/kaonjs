@@ -20,7 +20,6 @@ const getConfig = (config) => {
   const entry = path.resolve(__dirname, '../../isomorphic/server.js');
   const externals = fs
     .readdirSync(nodeModules)
-    // .filter(x => !/\.bin|react-loadable/.test(x))
     .reduce((items, mod) => {
       items[mod] = `commonjs ${mod}`;
       return items;
