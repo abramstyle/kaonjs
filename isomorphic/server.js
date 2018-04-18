@@ -6,12 +6,14 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import Helmet from 'react-helmet';
+import { getLoadableState } from 'loadable-components/server';
+// import { getBundles } from 'loadable-components/webpack';
 
 import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
 
 const {
-  stats, configureStore, getRoutes, App,
+  configureStore, getRoutes, App,
 } = require('./clientConfig');
 
 const getRenderer = () => async (ctx) => {
@@ -27,7 +29,6 @@ const getRenderer = () => async (ctx) => {
   }));
 
   const state = store.getState();
-  const modules = [];
 
   const app = App ? (
     <App />
@@ -45,6 +46,7 @@ const getRenderer = () => async (ctx) => {
     </Provider>
   );
 
+  const loadableState = await getLoadableState(Container);
   const html = ReactDOMServer.renderToString(Container);
   const helmet = Helmet.renderStatic();
 
@@ -54,10 +56,13 @@ const getRenderer = () => async (ctx) => {
     return attributes;
   }, {});
 
+
   return {
     html,
     state,
     helmet: allAttributes,
+    // preloadBundles,
+    loadableState,
     store,
   };
 };

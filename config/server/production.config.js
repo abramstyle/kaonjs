@@ -28,7 +28,6 @@ const getConfig = (config) => {
   externals['react-dom/server'] = 'commonjs react-dom/server';
 
   return {
-    mode: 'production',
     name: 'server',
     target: 'node',
     // devtool: 'source-map',

@@ -1,24 +1,21 @@
-const { generateCdnPath } = require('.');
+// const { generateCdnPath } = require('.');
 
-function getAssets(manifest = {}, preloadBundles = [], config) {
-  const cdnPath = generateCdnPath(config);
+function getAssets(manifest = {}) {
+  // const cdnPath = generateCdnPath(config);
   const styles = Object.keys(manifest)
     .map(key => manifest[key])
-    .filter(asset => asset.endsWith('.css'));
+    .filter(asset => asset.endsWith('.css'))
+    .reverse();
 
-  const bundles = [];
+  const bundles = [
+    manifest['commons.js'],
+    manifest['app.js'],
+  ];
 
-  preloadBundles
-    .filter(bundle => bundle && (bundle.file.endsWith('.js') || bundle.file.endsWith('.css')))
-    .map(bundle => `${cdnPath}${bundle.file}`)
-    .forEach((item) => {
-      if (item.endsWith('.js')) {
-        bundles.push(item);
-      }
-      if (item.endsWith('.css')) {
-        styles.unshift(item);
-      }
-    });
+
+  if (bundles.indexOf('app.js') === 1) {
+    bundles.push(manifest['app.js']);
+  }
 
 
   return {
