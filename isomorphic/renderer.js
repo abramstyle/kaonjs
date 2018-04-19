@@ -1,5 +1,6 @@
 const { inspect } = require('util');
 const { debugRender: debug } = require('../lib/debug');
+const serialize = require('serialize-javascript');
 const { getAssets } = require('../utils/assets');
 const { waitFor } = require('../utils/');
 
@@ -37,7 +38,7 @@ const getRenderer = (config) => {
 
       Object.assign(renderProps, {
         html,
-        state: JSON.stringify(state),
+        state: JSON.stringify(serialize(state)),
         helmet,
       });
 

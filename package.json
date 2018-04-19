@@ -72,6 +72,7 @@
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
+    "serialize-javascript": "^1.5.0",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.3",
     "url-loader": "^1.0.1",
