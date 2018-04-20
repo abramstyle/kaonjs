@@ -38,7 +38,7 @@ const getRenderer = (config) => {
 
       Object.assign(renderProps, {
         html,
-        state: JSON.stringify(serialize(state)),
+        state: serialize(state),
         helmet,
       });
 
