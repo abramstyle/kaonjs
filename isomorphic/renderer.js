@@ -9,7 +9,6 @@ const getRenderer = (config) => {
   const isomorphic = {};
   if (__SSR__) {
     if (__DEV__) {
-      console.log('delete main');
       delete require.cache[require.resolve(`${config.build.target}/main`)];
     }
 
