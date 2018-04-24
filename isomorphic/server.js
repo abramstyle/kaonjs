@@ -28,8 +28,6 @@ const getRenderer = () => async (ctx) => {
     store,
   }));
 
-  const state = store.getState();
-
   const app = App ? (
     <App />
   ) : renderRoutes(routes);
@@ -49,6 +47,8 @@ const getRenderer = () => async (ctx) => {
   const loadableState = await getLoadableState(Container);
   const html = ReactDOMServer.renderToString(Container);
   const helmet = Helmet.renderStatic();
+  
+  const state = store.getState();
 
   const allAttributes = Object.keys(helmet).reduce((attributes, key) => {
     attributes[key] = (helmet[key] || {}).toString();
