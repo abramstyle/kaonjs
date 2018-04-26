@@ -23,6 +23,10 @@ const getRenderer = (config) => {
     const renderProps = {
       helmet: {},
     };
+    const renderResult = {
+      content: null,
+      redirect: null,
+    };
 
     debug('manifest:');
     debug(inspect(manifest, { colors: true, depth: null }));
@@ -32,8 +36,10 @@ const getRenderer = (config) => {
     Object.assign(renderProps, assets);
     if (__SSR__) {
       const {
-        html, state, helmet, loadableState,
+        html, state, helmet, loadableState, redirect,
       } = await waitFor(isomorphic.serverRenderer(ctx));
+
+      renderResult.redirect = redirect;
 
       Object.assign(renderProps, {
         html,
@@ -50,7 +56,9 @@ const getRenderer = (config) => {
 
 
     // FIXME: DO Some security thing to ensure only escaped string will be rendered
-    return isomorphic.render(renderProps);
+
+    renderResult.content = isomorphic.render(renderProps);
+    return renderResult;
   };
 };
 
