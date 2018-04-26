@@ -47,7 +47,7 @@ const getRenderer = () => async (ctx) => {
   const loadableState = await getLoadableState(Container);
   const html = ReactDOMServer.renderToString(Container);
   const helmet = Helmet.renderStatic();
-  
+
   const state = store.getState();
 
   const allAttributes = Object.keys(helmet).reduce((attributes, key) => {
@@ -62,6 +62,7 @@ const getRenderer = () => async (ctx) => {
     state,
     helmet: allAttributes,
     // preloadBundles,
+    redirect: context,
     loadableState,
     store,
   };
