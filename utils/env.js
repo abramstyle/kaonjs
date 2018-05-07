@@ -1,5 +1,6 @@
 function config() {
   const env = process.env.NODE_ENV;
+  process.env.APP_ENV = process.env.APP_ENV || process.env.NODE_ENV;
 
   global.__DEV__ = false;
   global.__PROD__ = false;
