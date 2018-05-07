@@ -23,6 +23,30 @@ function mergeModules(module, otherModule) {
   };
 }
 
+function mergeEntries(module, otherModule) {
+  const rules = Object.keys(otherModule).reduce((items, item) => {
+    const itemValue = otherModule[item];
+    let defaultItemValue = module[item];
+
+    if (typeof itemValue === 'function') {
+      items[item] = itemValue(defaultItemValue);
+    } else if (Array.isArray(itemValue)) {
+      if (!Array.isArray(defaultItemValue)) {
+        defaultItemValue = [defaultItemValue];
+      }
+      items[item] = [...defaultItemValue, ...itemValue]
+    } else {
+      items[item] = itemValue;
+    }
+    return items;
+  }, {});
+
+  return {
+    ...module,
+    ...rules,
+  }
+}
+
 function mergeWebpack(...configurations) {
   return merge({
     customizeArray(a, b, key) {
@@ -39,6 +63,10 @@ function mergeWebpack(...configurations) {
         return mergeModules(a, b);
       }
 
+      if (key === 'entry') {
+        return mergeEntries(a, b)
+      }
+
       // Fall back to default merging
       return undefined;
     },
@@ -47,3 +75,4 @@ function mergeWebpack(...configurations) {
 
 exports.mergeModules = mergeModules;
 exports.mergeWebpack = mergeWebpack;
+exports.mergeEntries = mergeEntries;

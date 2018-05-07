@@ -1,6 +1,31 @@
-const { mergeWebpack, mergeModules } = require('../mergeWebpack');
+const { mergeWebpack, mergeModules, mergeEntries } = require('../mergeWebpack');
 
 describe('Test mergeModules', () => {
+  test('mergeEntries', () => {
+    const entries = {
+      app: ['index.js'],
+      commons: ['react', 'redux', 'react-redux'],
+      manifest: 'manifest.js',
+    };
+    
+    const otherEntries = {
+      app: ['app.js'],
+      commons: function(defaultEntriess) {
+        return ['polyfill', ...defaultEntriess];
+      },
+      other: 'b.js',
+    };
+
+    const mergedEntries = mergeEntries(entries, otherEntries);
+
+    expect(mergedEntries).toEqual({
+      app: ['index.js', 'app.js'],
+      commons: ['polyfill', 'react', 'redux', 'react-redux'],
+      manifest: 'manifest.js',
+      other: 'b.js',
+    });
+  });
+
   test('mergeModules', () => {
     const module = {
       rules: [{
