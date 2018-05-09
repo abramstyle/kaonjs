@@ -21,6 +21,13 @@ const getConfig = (config) => {
   const externals = fs
     .readdirSync(nodeModules)
     .reduce((items, mod) => {
+      if (mod.startsWith('@')) {
+        const subItems = fs.readdirAsync(path.join(nodeModules, mod));
+        subItems.forEach((item) => {
+          const modName = `${mod}/${item}`;
+          items[modName] = `commonjs ${modName}`;
+        });
+      }
       items[mod] = `commonjs ${mod}`;
       return items;
     }, {});
