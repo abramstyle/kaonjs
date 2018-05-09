@@ -17,9 +17,7 @@ const getConfig = (config) => {
       if (mod.startsWith('.')) {
         return items;
       } else if (mod.startsWith('@')) {
-        console.log('path.join(nodeModules, mod): ', path.join(nodeModules, mod));
         const subItems = fs.readdirSync(path.join(nodeModules, mod));
-        console.log('subItems: ', subItems);
         subItems.forEach((item) => {
           const modName = `${mod}/${item}`;
           items[modName] = `commonjs ${modName}`;
