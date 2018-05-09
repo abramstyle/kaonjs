@@ -8,12 +8,6 @@ require('dotenv').config({
 });
 
 const webpack = require('webpack');
-// const WriteFilePlugin = require('write-file-webpack-plugin');
-
-// if you're specifying externals to leave unbundled, you need to tell Webpack
-// to still bundle `react-universal-component`, `webpack-flush-chunks` and
-// `require-universal-module` so that they know they are running
-// within Webpack and can properly make connections to client modules:
 
 const getConfig = (config) => {
   const nodeModules = path.resolve(process.cwd(), 'node_modules');
@@ -21,14 +15,19 @@ const getConfig = (config) => {
   const externals = fs
     .readdirSync(nodeModules)
     .reduce((items, mod) => {
-      if (mod.startsWith('@')) {
-        const subItems = fs.readdirAsync(path.join(nodeModules, mod));
+      if (mod.startsWith('.')) {
+        return items;
+      } else if (mod.startsWith('@')) {
+        console.log('path.join(nodeModules, mod): ', path.join(nodeModules, mod));
+        const subItems = fs.readdirSync(path.join(nodeModules, mod));
+        console.log('subItems: ', subItems);
         subItems.forEach((item) => {
           const modName = `${mod}/${item}`;
           items[modName] = `commonjs ${modName}`;
         });
+      } else {
+        items[mod] = `commonjs ${mod}`;
       }
-      items[mod] = `commonjs ${mod}`;
       return items;
     }, {});
 
