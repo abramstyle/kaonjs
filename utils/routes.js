@@ -17,9 +17,12 @@ function getComponents(routes, url) {
   const matched = branch[0];
 
   if (matched) {
-    const { route: { component, routes: subRoutes } } = matched;
+    const { route: { component, routes: subRoutes }, match: { params } } = matched;
 
-    const components = [component];
+    const components = [{
+      component,
+      params,
+    }];
 
     if (Array.isArray(subRoutes)) {
       const subComponents = getComponents(subRoutes, url);

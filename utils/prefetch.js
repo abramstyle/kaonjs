@@ -15,14 +15,15 @@ async function prefetch(config) {
   const components = getComponents(routes, path) || [];
   const fetchingList = [];
 
-  components.forEach((component) => {
+  components.forEach((item) => {
+    const { component, params } = item;
     const { nextReducer, getInitialProps } = component;
     if (typeof nextReducer === 'function') {
       store.replaceReducer(nextReducer());
     }
 
     if (getInitialProps && isFunction(getInitialProps)) {
-      fetchingList.push(getInitialProps(store.dispatch));
+      fetchingList.push(getInitialProps(store.dispatch, params));
     }
   });
 
