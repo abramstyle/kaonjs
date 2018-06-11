@@ -54,13 +54,6 @@
     ],
     "react/no-did-mount-set-state":0
   },
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "config/webpack/development.config.js"
-      }
-    }
-  },
   "env": {
     "browser": true,
     "node": true,
