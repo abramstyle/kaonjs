@@ -178,5 +178,18 @@ You can use [react-helmet](https://github.com/nfl/react-helmet).
 ## apply your own webpack configuration.
 *ATTENTION!* You cannot override default entry with yours.
 
+## pm2 graceful reload
+add the below configuration to your pm2
+```js
+module.exports = {
+  apps : [{
+    name: "api",
+    script: "./api.js",
+    wait_ready: true,
+    listen_timeout: 3000,
+  }],
+}
+```
+
 # License
 MIT

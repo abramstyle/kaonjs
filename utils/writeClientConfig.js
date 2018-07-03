@@ -8,14 +8,14 @@ const template = (config) => {
   const { isomorphic } = config;
   const { routes, store, app } = isomorphic;
   return `
-      const { default: getRoutes } = require('${routes}');
-      const { default: configureStore } = require('${store}');
-      const { default: App } = ${!!app} ? require('${app}') : {};
+const { default: getRoutes } = require('${routes}');
+const { default: configureStore } = require('${store}');
+const { default: App } = ${!!app} ? require('${app}') : {};
 
-      exports.getRoutes = getRoutes;
-      exports.configureStore = configureStore;
-      exports.App = App;
-    `;
+exports.getRoutes = getRoutes;
+exports.configureStore = configureStore;
+exports.App = App;
+  `;
 };
 
 async function writeConfig(config = {}) {
