@@ -14,7 +14,10 @@
     "prod": "NODE_ENV=production .bin/cli.js start --config ./example/config/cybertron.config.js",
     "server": "NODE_ENV=development nodemon server",
     "build:server": "webpack --config config/webpack/server.config.js --watch --env=development --progress --colors",
-    "test": "jest"
+    "lint": "eslint ./",
+    "coverage": "yarn run test && yarn run append",
+    "test": "jest --coverage",
+    "append": "coveralls < coverage/lcov.info"
   },
   "license": "MIT",
   "dependencies": {
@@ -83,5 +86,8 @@
     "webpack-merge": "^4.1.2",
     "write-file-webpack-plugin": "^4.2.0",
     "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.2"
   }
 }
