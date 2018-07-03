@@ -26,6 +26,7 @@ const r = require('yargs').usage('kaon <cmd> [options]')
   }, (argv) => {
     build(argv);
   })
+  .demandCommand(1, 'You must select a command to continue.')
   .help()
   .argv;
 
