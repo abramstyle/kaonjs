@@ -34,7 +34,7 @@ function mergeEntries(module, otherModule) {
       if (!Array.isArray(defaultItemValue)) {
         defaultItemValue = [defaultItemValue];
       }
-      items[item] = [...defaultItemValue, ...itemValue]
+      items[item] = [...defaultItemValue, ...itemValue];
     } else {
       items[item] = itemValue;
     }
@@ -44,7 +44,7 @@ function mergeEntries(module, otherModule) {
   return {
     ...module,
     ...rules,
-  }
+  };
 }
 
 function mergeWebpack(...configurations) {
@@ -64,7 +64,7 @@ function mergeWebpack(...configurations) {
       }
 
       if (key === 'entry') {
-        return mergeEntries(a, b)
+        return mergeEntries(a, b);
       }
 
       // Fall back to default merging

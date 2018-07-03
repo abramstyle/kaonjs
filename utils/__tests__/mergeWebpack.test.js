@@ -7,10 +7,10 @@ describe('Test mergeModules', () => {
       commons: ['react', 'redux', 'react-redux'],
       manifest: 'manifest.js',
     };
-    
+
     const otherEntries = {
       app: ['app.js'],
-      commons: function(defaultEntriess) {
+      commons(defaultEntriess) {
         return ['polyfill', ...defaultEntriess];
       },
       other: 'b.js',

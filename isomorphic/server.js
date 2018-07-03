@@ -12,6 +12,7 @@ import { getLoadableState } from 'loadable-components/server';
 import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
 
+/* eslint import/no-unresolved: 0 */
 const {
   configureStore, getRoutes, App,
 } = require('./clientConfig');

@@ -19,6 +19,10 @@
     "test": "jest --coverage",
     "append": "coveralls < coverage/lcov.info"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "license": "MIT",
   "dependencies": {
     "@abramstyle/utils": "^0.8.15",
@@ -88,6 +92,7 @@
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2"
+    "coveralls": "^3.0.2",
+    "pre-commit": "^1.2.2"
   }
 }
