@@ -12,10 +12,18 @@ import { getLoadableState } from 'loadable-components/server';
 import prefetch from '../utils/prefetch';
 import { waitFor } from '../utils/';
 
+// to catch client compiling error
 /* eslint import/no-unresolved: 0 */
-const {
-  configureStore, getRoutes, App,
-} = require('./clientConfig');
+let configureStore = null;
+let getRoutes = null;
+let App = null;
+try {
+  ({
+    configureStore, getRoutes, App,
+  } = require('./clientConfig'));
+} catch (e) {
+  console.log('Client Code Error: ', e);
+}
 
 const getRenderer = () => async (ctx) => {
   // const context = {};
