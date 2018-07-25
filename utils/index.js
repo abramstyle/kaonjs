@@ -24,8 +24,9 @@ function processConfig(config = {}) {
   }
 
   const kaonConfig = {
+    ssr: true,
+    onlyServer: false,
     renderer: {
-      ssr: true,
       template: path.resolve(__dirname, '../isomorphic/template'),
     },
     app: {

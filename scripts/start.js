@@ -2,10 +2,13 @@ const Kaon = require('../lib/kaon');
 const loadConfig = require('../utils/loadConfig');
 
 function run(options) {
-  const { config: configPath } = options;
+  const { config: configPath, port, onlyServer } = options;
   let config = null;
   try {
-    config = loadConfig(configPath);
+    config = Object.assign({}, loadConfig(configPath), {
+      port,
+      onlyServer,
+    });
   } catch (e) {
     console.error('no configuration file found.');
   }

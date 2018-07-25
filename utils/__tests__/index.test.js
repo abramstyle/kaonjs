@@ -56,8 +56,9 @@ describe('utils/processConfig', () => {
   const baseDir = getBaseDir();
 
   const finalConfig = {
+    ssr: true,
+    onlyServer: false,
     renderer: {
-      ssr: true,
       template: path.resolve(__dirname, '../../isomorphic/template'),
     },
     app: {
@@ -122,8 +123,9 @@ describe('utils/processConfig', () => {
     const config = processConfig(customizeConfig);
 
     expect(config).toEqual({
+      ssr: false,
+      onlyServer: false,
       renderer: {
-        ssr: true,
         template: path.resolve(__dirname, '../../isomorphic/template'),
       },
       app: {

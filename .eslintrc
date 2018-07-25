@@ -48,7 +48,8 @@
           "__STAGING__",
           "__IS_SERVER__",
           "__PRELOADED_STATE__",
-          "__SSR__"
+          "__SSR__",
+          "__ONLY_SERVER__"
         ]
       }
     ],
@@ -67,6 +68,7 @@
     "__STAGING__": true,
     "__IS_SERVER__": true,
     "__PRELOADED_STATE__": true,
-    "__SSR__": true
+    "__SSR__": true,
+    "__ONLY_SERVER__": true
   }
 }

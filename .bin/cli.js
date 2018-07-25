@@ -12,6 +12,9 @@ const r = require('yargs').usage('kaon <cmd> [options]')
       type: 'string',
       default: 1592,
       describe: 'server port',
+    }).options('only-server', {
+      type: 'boolean',
+      describe: 'only run koa server',
     }).help();
   }, (argv) => {
     start(argv);
