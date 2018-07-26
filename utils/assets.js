@@ -8,7 +8,7 @@ function getAssets(manifest = {}) {
     .reverse();
 
   const bundles = [
-    manifest['manifest.js'],
+    // manifest['manifest.js'],
     manifest['commons.js'],
     manifest['app.js'],
   ];

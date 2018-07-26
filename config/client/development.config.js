@@ -8,6 +8,7 @@ const getConfig = (config) => {
   const serverHost = config.build.host || '0.0.0.0';
   const serverPort = config.build.port || 1592;
   return {
+    mode: 'development',
     entry: {
       app: [
         'react-hot-loader/patch',
@@ -113,6 +114,18 @@ const getConfig = (config) => {
       }],
     },
 
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            name: 'commons',
+            chunks: 'initial',
+            minChunks: 2,
+          },
+        },
+      },
+    },
+
     plugins: [
       new ManifestPlugin(),
       new WriteFilePlugin({
@@ -132,13 +145,6 @@ const getConfig = (config) => {
         __STAGING__: JSON.stringify(__STAGING__),
         __RELEASE__: JSON.stringify(__RELEASE__),
         __PROD__: JSON.stringify(__PROD__),
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        names: ['commons', 'manifest'],
-        minChunks(module) {
-        // this assumes your vendor imports exist in the node_modules directory
-          return module.context && module.context.indexOf('node_modules') !== -1;
-        },
       }),
     ],
   };

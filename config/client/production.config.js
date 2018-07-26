@@ -1,12 +1,12 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { generateCdnPath } = require('../../utils');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const getConfig = config => ({
   entry: {
+    mode: 'development',
     app: [
       // 'babel-polyfill',
       config.isomorphic.main,
@@ -46,27 +46,25 @@ const getConfig = config => ({
       }],
       exclude: /node_modules/,
     }, {
-      test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            sourceMap: true,
-            minimize: true,
-            modules: true,
-            importLoaders: 1,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
+      use: [{
+        loader: MiniCssExtractPlugin.loader,
+      }, {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+          minimize: true,
+          modules: true,
+          importLoaders: 1,
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+        },
+      }, {
+        loader: 'postcss-loader',
+        options: {
+          config: {
+            path: config.postcss.path,
           },
-        }, {
-          loader: 'postcss-loader',
-          options: {
-            config: {
-              path: config.postcss.path,
-            },
-          },
-        }],
-      }),
+        },
+      }],
     }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       use: {
@@ -92,9 +90,33 @@ const getConfig = config => ({
     }],
   },
 
+  optimization: {
+    namedModules: true,
+    optimization: {
+      minimize: false,
+      minimizer: [
+        new UglifyJsPlugin(),
+      ],
+    },
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2,
+        },
+      },
+    },
+  },
+
   plugins: [
     new ManifestPlugin(),
-    new webpack.NamedModulesPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name]-[contenthash].css',
+      chunkFilename: '[name]-[contenthash].css',
+    }),
 
     new webpack.DefinePlugin({
       'process.env': {
@@ -107,18 +129,6 @@ const getConfig = config => ({
       __RELEASE__: JSON.stringify(__RELEASE__),
       __PROD__: JSON.stringify(__PROD__),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['commons', 'manifest'],
-      minChunks(module) {
-        // this assumes your vendor imports exist in the node_modules directory
-        return module.context && module.context.indexOf('node_modules') !== -1;
-      },
-    }),
-    new ExtractTextPlugin({
-      filename: '[name]-[contenthash].css',
-      allChunks: true,
-    }),
-    new UglifyJSPlugin(),
   ],
 });
 
