@@ -1,5 +1,5 @@
 const merge = require('webpack-merge');
-const { arrayUtils } = require('@abramstyle/utils');
+const { arrayUtils } = require('fanas');
 
 function mergeModules(module, otherModule) {
   const allRules = [...module.rules, ...otherModule.rules];

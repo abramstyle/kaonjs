@@ -1,12 +1,13 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { generateCdnPath } = require('../../utils');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
+const { generateCdnPath } = require('../../utils');
+
 const getConfig = config => ({
+  mode: 'production',
   entry: {
-    mode: 'development',
     app: [
       // 'babel-polyfill',
       config.isomorphic.main,
@@ -46,6 +47,7 @@ const getConfig = config => ({
       }],
       exclude: /node_modules/,
     }, {
+      test: /\.css$/,
       use: [{
         loader: MiniCssExtractPlugin.loader,
       }, {
@@ -92,12 +94,10 @@ const getConfig = config => ({
 
   optimization: {
     namedModules: true,
-    optimization: {
-      minimize: false,
-      minimizer: [
-        new UglifyJsPlugin(),
-      ],
-    },
+    minimize: false,
+    minimizer: [
+      new UglifyJsPlugin(),
+    ],
     splitChunks: {
       cacheGroups: {
         commons: {

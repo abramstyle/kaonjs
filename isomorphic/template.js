@@ -1,4 +1,4 @@
-const { arrayUtils } = require('@abramstyle/utils');
+const { arrayUtils } = require('fanas');
 
 const renderHtml = (data = {}) => {
   const bundles = arrayUtils.uniq((data.bundles || []))

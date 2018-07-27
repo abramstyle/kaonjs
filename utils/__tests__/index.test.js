@@ -1,6 +1,6 @@
 const path = require('path');
 const {
-  getBaseDir, processConfig, generateCdnPath, waitFor,
+  getBaseDir, processConfig, generateCdnPath,
 } = require('..');
 
 describe('utils/generateCdnPath', () => {
@@ -161,34 +161,5 @@ describe('utils/processConfig', () => {
   test('all with default config', () => {
     const config = processConfig();
     expect(config).toEqual(finalConfig);
-  });
-});
-
-describe('waitFor', () => {
-  test('waitFor will resolve promise result.', async () => {
-    expect.assertions(1);
-    const get = new Promise(resolve => resolve('success'));
-
-    const result = await waitFor(get);
-    expect(result).toBe('success');
-  });
-
-  test('waitFor will throw error', async () => {
-    expect.assertions(1);
-    const getError = new Promise((resolve, reject) => {
-      const error = new Error('failure');
-      reject(error);
-    });
-
-    function getResult() {
-      return waitFor(getError);
-    }
-
-    try {
-      await waitFor(getResult());
-    } catch (e) {
-      const error = new Error('failure');
-      expect(e).toEqual(error);
-    }
   });
 });

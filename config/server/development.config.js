@@ -1,12 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
 const { generateCdnPath } = require('../../utils');
 
 require('dotenv').config({
   path: path.resolve(__dirname, '../../.env'),
 });
-
-const webpack = require('webpack');
 
 const getConfig = (config) => {
   const nodeModules = path.resolve(process.cwd(), 'node_modules');
@@ -16,7 +15,7 @@ const getConfig = (config) => {
     .reduce((items, mod) => {
       if (mod.startsWith('.')) {
         return items;
-      } else if (mod.startsWith('@')) {
+      } if (mod.startsWith('@')) {
         const subItems = fs.readdirSync(path.join(nodeModules, mod));
         subItems.forEach((item) => {
           const modName = `${mod}/${item}`;

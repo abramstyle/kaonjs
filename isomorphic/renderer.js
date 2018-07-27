@@ -1,8 +1,7 @@
 const { inspect } = require('util');
-const { debugRender: debug } = require('../lib/debug');
 const serialize = require('serialize-javascript');
+const { debugRender: debug } = require('../lib/debug');
 const { getAssets } = require('../utils/assets');
-const { waitFor } = require('../utils/');
 
 const getRenderer = (config) => {
   // invalidate cache and require fresh cache
@@ -37,7 +36,7 @@ const getRenderer = (config) => {
     if (__SSR__) {
       const {
         html, state, helmet, loadableState, redirect,
-      } = await waitFor(isomorphic.serverRenderer(ctx));
+      } = await isomorphic.serverRenderer(ctx);
 
       renderResult.redirect = redirect;
 

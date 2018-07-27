@@ -10,7 +10,6 @@ import { getLoadableState } from 'loadable-components/server';
 // import { getBundles } from 'loadable-components/webpack';
 
 import prefetch from '../utils/prefetch';
-import { waitFor } from '../utils/';
 
 // to catch client compiling error
 /* eslint import/no-unresolved: 0 */
@@ -31,11 +30,11 @@ const getRenderer = () => async (ctx) => {
   const context = {};
   const routes = typeof getRoutes === 'function' ? getRoutes(ctx) : getRoutes;
 
-  await waitFor(prefetch({
+  await prefetch({
     routes,
     path: ctx.path,
     store,
-  }));
+  });
 
   const app = App ? (
     <App />

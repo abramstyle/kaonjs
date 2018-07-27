@@ -1,4 +1,4 @@
-const { objectUtils } = require('@abramstyle/utils');
+const { objectUtils } = require('fanas');
 const path = require('path');
 
 function generateCdnPath(config) {
@@ -48,8 +48,8 @@ function processConfig(config = {}) {
       path: `${baseDir}/config/postcss.config.js`,
     },
     webpack: {
-      client: `${baseDir}/config/webpack.client.config`,
-      server: `${baseDir}/config/webpack.server.config`,
+      client: `${baseDir}/config/webpack.client.config.js`,
+      server: `${baseDir}/config/webpack.server.config.js`,
     },
     build: {
       host: 'localhost',
@@ -72,16 +72,6 @@ function processConfig(config = {}) {
   return kaonConfig;
 }
 
-// an function wrap async and await function, catch result as default, and throw it
-function waitFor(promise) {
-  return promise
-    .then(result => result)
-    .catch((error) => {
-      throw error;
-    });
-}
-
 exports.generateCdnPath = generateCdnPath;
 exports.getBaseDir = getBaseDir;
 exports.processConfig = processConfig;
-exports.waitFor = waitFor;
