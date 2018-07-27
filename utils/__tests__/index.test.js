@@ -80,8 +80,8 @@ describe('utils/processConfig', () => {
       path: `${baseDir}/config/postcss.config.js`,
     },
     webpack: {
-      client: `${baseDir}/config/webpack.client.config`,
-      server: `${baseDir}/config/webpack.server.config`,
+      client: `${baseDir}/config/webpack.client.config.js`,
+      server: `${baseDir}/config/webpack.server.config.js`,
     },
     build: {
       host: 'localhost',
@@ -148,7 +148,7 @@ describe('utils/processConfig', () => {
       },
       webpack: {
         client: '/project/config/webpack.client.js',
-        server: `${baseDir}/config/webpack.server.config`,
+        server: `${baseDir}/config/webpack.server.config.js`,
       },
       build: {
         host: 'static.domain.com',

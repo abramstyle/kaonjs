@@ -17,7 +17,6 @@ function buildConfig(configBuilder, appConfig) {
   if (typeof config === 'function') {
     return config(appConfig);
   }
-  console.log(require('util').inspect('build config: ', config, { depth: null }));
   return config;
 }
 
@@ -35,12 +34,9 @@ function loadBuildConfig(appConfig) {
   config.server = buildConfig(localServerBuilder, appConfig);
 
   if (appConfig.webpack.client) {
-    console.log('appConfig.webpack.client: ', appConfig.webpack.client);
     try {
       const externalClientConfigBuilder = require(appConfig.webpack.client);
       const externalClientConfig = buildConfig(externalClientConfigBuilder);
-
-      console.log('externalClientConfigBuilder: ', externalClientConfigBuilder);
 
       config.client = mergeWebpack(config.client, externalClientConfig);
     } catch (e) {

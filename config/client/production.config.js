@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -63,7 +64,7 @@ const getConfig = config => ({
         loader: 'postcss-loader',
         options: {
           config: {
-            path: config.postcss.path,
+            path: path.resolve(__dirname, '../postcss.config.js'),
           },
         },
       }],
