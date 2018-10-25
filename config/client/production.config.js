@@ -118,7 +118,9 @@ const getConfig = config => ({
       filename: '[name]-[contenthash].css',
       allChunks: true,
     }),
-    new UglifyJSPlugin(),
+    new UglifyJSPlugin({
+      sourceMap: true,
+    }),
   ],
 });
 
