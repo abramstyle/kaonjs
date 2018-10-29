@@ -114,7 +114,9 @@ const getConfig = (config) => {
     },
 
     plugins: [
-      new ManifestPlugin(),
+      new ManifestPlugin({
+        writeToFileEmit: true,
+      }),
       new WriteFilePlugin({
       // Write only files that have ".json" extension.
         test: /\.json/,
