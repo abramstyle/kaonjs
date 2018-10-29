@@ -29,8 +29,6 @@ const getConfig = config => ({
     path: config.build.target,
 
     publicPath: generateCdnPath(config),
-    // necessary for HMR to know where to load the hot update chunks
-    sourceMapFilename: '[name]-[chunkhash].js.map',
   },
 
   // context: resolve('sources'),
