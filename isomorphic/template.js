@@ -16,17 +16,17 @@ const renderHtml = (data = {}) => {
             ${data.helmet.meta || ''}
             ${data.helmet.link || ''}
             ${data.helmet.style || ''}
+            ${data.helmet.script || ''}
+            ${data.helmet.noscript || ''}
             ${styles}
         </head>
         <body ${data.helmet.bodyAttributes || ''}>
-            ${data.helmet.noscript || ''}
             <main id="root">${data.html || ''}</main>
             <script>
               window.__PRELOADED_STATE__ = ${data.state || '{}'};
             </script>
             ${data.loadableState || ''}
             ${bundles || ''}
-            ${data.helmet.script || ''}
         </body>
     </html>
   `;
