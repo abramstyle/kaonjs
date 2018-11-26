@@ -24,21 +24,19 @@ const getConfig = config => ({
     ],
   },
   output: {
-    filename: '[name]-[chunkhash].bundle.js',
+    filename: '[name]-[chunkhash].js',
 
-    chunkFilename: '[name]-[chunkhash].chunk.js',
+    chunkFilename: '[name]-[chunkhash].js',
 
     path: config.build.target,
 
     publicPath: generateCdnPath(config),
-    // necessary for HMR to know where to load the hot update chunks
-    sourceMapFilename: '[name]-[chunkhash].js.map',
   },
 
   // context: resolve('sources'),
 
   // devtool: 'eval-source-map',
-  devtool: 'source-map',
+  devtool: 'hidden-source-map',
 
   module: {
     rules: [{
