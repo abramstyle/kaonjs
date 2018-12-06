@@ -10,6 +10,7 @@ module.exports = {
   ],
   "plugins": [
     "loadable-components/babel",
+    "@babel/plugin-transform-regenerator",
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
     }],
