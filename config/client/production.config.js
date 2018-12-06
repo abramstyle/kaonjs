@@ -3,6 +3,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const babelOptions = require('../../.babelrc');
 
 const { generateCdnPath } = require('../../utils');
 
@@ -43,6 +44,7 @@ const getConfig = config => ({
       test: /\.js$/,
       use: [{
         loader: 'babel-loader',
+        options: babelOptions,
       }],
       exclude: /node_modules/,
     }, {

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const { generateCdnPath } = require('../../utils');
+const babelOptions = require('../../.babelrc');
 
 const getConfig = (config) => {
   const serverHost = config.build.host || '0.0.0.0';
@@ -67,6 +68,7 @@ const getConfig = (config) => {
         test: /\.js$/,
         use: [{
           loader: 'babel-loader',
+          options: babelOptions,
         }],
         exclude: /node_modules/,
       }, {
@@ -132,7 +134,7 @@ const getConfig = (config) => {
         writeToFileEmit: true,
       }),
       new WriteFilePlugin({
-      // Write only files that have ".json" extension.
+        // Write only files that have ".json" extension.
         test: /\.json/,
         useHashIndex: true,
       }),

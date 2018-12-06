@@ -1,17 +1,13 @@
-{
+module.exports = {
   "presets": [
-    "react",
-    "stage-0",
-    "stage-2",
-    ["env", {
+    "@babel/preset-react",
+    ["@babel/preset-env", {
       "targets": {
         "browsers": ["last 2 versions"],
-        "node": "current"
       }
     }],
   ],
   "plugins": [
-    "transform-runtime",
     "loadable-components/babel",
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
@@ -20,7 +16,13 @@
   "env": {
     "development": {
       "plugins": [
+        "@babel/plugin-transform-runtime",
         "react-hot-loader/babel",
+      ]
+    },
+    production: {
+      plugins: [
+        '@babel/runtime'
       ]
     }
   }

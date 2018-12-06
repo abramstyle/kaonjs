@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const { generateCdnPath } = require('../../utils');
+const babelOptions = require('../../.babelrc.server');
 
 require('dotenv').config({
   path: path.resolve(__dirname, '../../.env'),
@@ -47,7 +48,10 @@ const getConfig = (config) => {
       rules: [
         {
           test: /\.js$/,
-          use: 'babel-loader',
+          use: {
+            loader: 'babel-loader',
+            options: babelOptions,
+          },
           exclude: modulePath => /node_modules/.test(modulePath) && !/node_modules\/kaon/.test(modulePath),
         },
         {
@@ -92,7 +96,7 @@ const getConfig = (config) => {
       extensions: ['.js', '.css', '.styl'],
     },
     plugins: [
-    // new WriteFilePlugin(),
+      // new WriteFilePlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),

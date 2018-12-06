@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
+const babelOptions = require('../../.babelrc.server');
 
 const { generateCdnPath } = require('../../utils');
 
@@ -49,7 +50,10 @@ const getConfig = (config) => {
       rules: [
         {
           test: /\.js$/,
-          use: 'babel-loader',
+          use: {
+            loader: 'babel-loader',
+            options: babelOptions,
+          },
           exclude: modulePath => /node_modules/.test(modulePath) && !/node_modules\/kaon/.test(modulePath),
         },
         {
@@ -94,7 +98,7 @@ const getConfig = (config) => {
       extensions: ['.js', '.css', '.styl'],
     },
     plugins: [
-    // new WriteFilePlugin(),
+      // new WriteFilePlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),
