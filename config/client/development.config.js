@@ -13,6 +13,7 @@ const getConfig = (config) => {
     mode: 'development',
     entry: {
       app: [
+        '@babel/polyfill',
         'react-hot-loader/patch',
         config.isomorphic.main,
       ],

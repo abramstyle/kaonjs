@@ -5,12 +5,11 @@ module.exports = {
       "targets": {
         "node": "current"
       },
-      modules: "commonjs"
     }],
   ],
   "plugins": [
+    // "@babel/plugin-transform-regenerator",
     "loadable-components/babel",
-    "@babel/plugin-transform-regenerator",
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
     }],

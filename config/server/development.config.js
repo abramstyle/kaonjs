@@ -36,7 +36,10 @@ const getConfig = (config) => {
     target: 'node',
     // devtool: 'source-map',
     devtool: 'eval',
-    entry: [entry],
+    entry: [
+      '@babel/polyfill',
+      entry,
+    ],
     externals,
     output: {
       path: config.build.target,

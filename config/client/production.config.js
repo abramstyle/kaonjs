@@ -11,7 +11,7 @@ const getConfig = config => ({
   mode: 'production',
   entry: {
     app: [
-      // 'babel-polyfill',
+      '@babel/polyfill',
       config.isomorphic.main,
     ],
     commons: [
