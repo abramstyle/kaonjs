@@ -1,21 +1,21 @@
 module.exports = {
-  "presets": [
+  presets: [
     "@babel/preset-react",
     ["@babel/preset-env", {
-      "targets": {
+      targets: {
         "browsers": ["last 2 versions"],
       }
     }],
   ],
-  "plugins": [
+  plugins: [
     "loadable-components/babel",
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
     }],
   ],
-  "env": {
+  env: {
     "development": {
-      "plugins": [
+      plugins: [
         "@babel/plugin-transform-runtime",
         "react-hot-loader/babel",
       ]
