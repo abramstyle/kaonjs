@@ -38,7 +38,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn run coverage
+      - run: yarn run test
   deploy:
     filters:
       branches:
@@ -68,6 +68,6 @@ workflows:
   build-deploy:
     jobs:
       - test
-      - deploy:
-          requires:
-            - test
+      # - deploy:
+      #     requires:
+      #       - test
