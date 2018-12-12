@@ -9,7 +9,7 @@ module.exports = {
     }],
   ],
   "plugins": [
-    "loadable-components/babel",
+    "@loadable/babel-plugin",
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
     }],

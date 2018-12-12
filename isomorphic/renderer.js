@@ -35,7 +35,11 @@ const getRenderer = (config) => {
     Object.assign(renderProps, assets);
     if (__SSR__) {
       const {
-        html, state, helmet, loadableState, redirect,
+        html,
+        state,
+        helmet,
+        redirect,
+        statics,
       } = await isomorphic.serverRenderer(ctx);
 
       renderResult.redirect = redirect;
@@ -44,13 +48,10 @@ const getRenderer = (config) => {
         html,
         state: serialize(state),
         helmet,
+        statics,
       });
 
       debug(inspect(assets, { colors: true, depth: null }));
-
-      Object.assign(renderProps, {
-        loadableState: loadableState.getScriptTag(),
-      });
     }
 
 

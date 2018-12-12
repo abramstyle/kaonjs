@@ -1,8 +1,8 @@
 const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const babelOptions = require('../../.babelrc');
 
 const { generateCdnPath } = require('../../utils');
@@ -111,13 +111,13 @@ const getConfig = config => ({
   },
 
   plugins: [
-    new ManifestPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       filename: '[name]-[contenthash].css',
       chunkFilename: '[name]-[contenthash].css',
     }),
+    new LoadablePlugin(),
 
     new webpack.DefinePlugin({
       'process.env': {

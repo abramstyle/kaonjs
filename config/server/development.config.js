@@ -92,9 +92,6 @@ const getConfig = (config) => {
         },
       ],
     },
-    resolve: {
-      extensions: ['.js', '.css', '.styl'],
-    },
     plugins: [
       // new WriteFilePlugin(),
       new webpack.optimize.LimitChunkCountPlugin({

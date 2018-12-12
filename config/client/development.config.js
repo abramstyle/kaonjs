@@ -1,8 +1,7 @@
 require('dotenv').config();
 const path = require('path');
 const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const { generateCdnPath } = require('../../utils');
 const babelOptions = require('../../.babelrc');
 
@@ -24,7 +23,6 @@ const getConfig = (config) => {
         'react-router',
         'react-router-dom',
         'react-helmet',
-        'loadable-components',
       ],
     },
     output: {
@@ -130,14 +128,7 @@ const getConfig = (config) => {
     },
 
     plugins: [
-      new ManifestPlugin({
-        writeToFileEmit: true,
-      }),
-      new WriteFilePlugin({
-        // Write only files that have ".json" extension.
-        test: /\.json/,
-        useHashIndex: true,
-      }),
+      new LoadablePlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
       new webpack.DefinePlugin({

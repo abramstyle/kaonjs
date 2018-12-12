@@ -6,8 +6,7 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import Helmet from 'react-helmet';
-import { getLoadableState } from 'loadable-components/server';
-// import { getBundles } from 'loadable-components/webpack';
+import { ChunkExtractor } from '@loadable/server';
 
 import prefetch from '../utils/prefetch';
 
@@ -27,8 +26,12 @@ try {
 const getRenderer = () => async (ctx) => {
   // const context = {};
   const store = configureStore(ctx)();
+  const { config } = ctx;
   const context = {};
   const routes = typeof getRoutes === 'function' ? getRoutes(ctx) : getRoutes;
+
+  const statsFile = `${config.build.target}/loadable-stats.json`;
+  const extractor = new ChunkExtractor({ statsFile, entrypoints: ['app'] });
 
   await prefetch({
     routes,
@@ -52,8 +55,8 @@ const getRenderer = () => async (ctx) => {
     </Provider>
   );
 
-  const loadableState = await getLoadableState(Container);
-  const html = ReactDOMServer.renderToString(Container);
+  const jsx = extractor.collectChunks(Container);
+  const html = ReactDOMServer.renderToString(jsx);
   const helmet = Helmet.renderStatic();
 
   const state = store.getState();
@@ -63,6 +66,11 @@ const getRenderer = () => async (ctx) => {
 
     return attributes;
   }, {});
+  const statics = {
+    scripts: extractor.getScriptTags(),
+    link: extractor.getLinkTags(),
+    style: extractor.getStyleTags(),
+  };
 
 
   return {
@@ -71,7 +79,7 @@ const getRenderer = () => async (ctx) => {
     helmet: allAttributes,
     // preloadBundles,
     redirect: context,
-    loadableState,
+    statics,
     store,
   };
 };

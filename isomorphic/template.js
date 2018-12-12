@@ -1,12 +1,12 @@
-const { arrayUtils } = require('fanas');
-
 const renderHtml = (data = {}) => {
-  const bundles = arrayUtils.uniq((data.bundles || []))
-    .map(bundle => `<script src="${bundle}"></script>`)
-    .join('');
-  const styles = (data.styles || [])
-    .map(style => `<link href="${style}" rel="stylesheet" />`)
-    .join('');
+  // const bundles = arrayUtils.uniq((data.bundles || []))
+  //   .map(bundle => `<script src="${bundle}"></script>`)
+  //   .join('');
+  // const styles = (data.styles || [])
+  //   .map(style => `<link href="${style}" rel="stylesheet" />`)
+  //   .join('');
+  const { statics } = data;
+
 
   return `
     <!doctype html>
@@ -16,17 +16,17 @@ const renderHtml = (data = {}) => {
             ${data.helmet.meta || ''}
             ${data.helmet.link || ''}
             ${data.helmet.style || ''}
-            ${styles}
+            ${statics.link}
+            ${statics.style}
+            ${data.helmet.noscript || ''}
+            ${data.helmet.script || ''}
         </head>
         <body ${data.helmet.bodyAttributes || ''}>
-            ${data.helmet.noscript || ''}
             <main id="root">${data.html || ''}</main>
             <script>
               window.__PRELOADED_STATE__ = ${data.state || '{}'};
             </script>
-            ${data.loadableState || ''}
-            ${bundles || ''}
-            ${data.helmet.script || ''}
+            ${statics.scripts}
         </body>
     </html>
   `;
