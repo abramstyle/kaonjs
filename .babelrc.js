@@ -23,10 +23,5 @@ module.exports = {
         "react-hot-loader/babel",
       ]
     },
-    production: {
-      plugins: [
-        '@babel/runtime'
-      ]
-    }
   }
 }

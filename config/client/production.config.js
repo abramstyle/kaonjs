@@ -34,10 +34,7 @@ const getConfig = config => ({
     publicPath: generateCdnPath(config),
   },
 
-  // context: resolve('sources'),
-
-  // devtool: 'eval-source-map',
-  devtool: 'hidden-source-map',
+  devtool: 'source-map',
 
   module: {
     rules: [{
@@ -108,6 +105,10 @@ const getConfig = config => ({
         },
       },
     },
+  },
+
+  performance: {
+    hints: false,
   },
 
   plugins: [

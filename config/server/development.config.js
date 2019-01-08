@@ -35,6 +35,7 @@ const getConfig = (config) => {
     name: 'server',
     target: 'node',
     // devtool: 'source-map',
+    mode: 'development',
     devtool: 'eval',
     entry: [entry],
     externals,

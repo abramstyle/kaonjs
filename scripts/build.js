@@ -12,7 +12,7 @@ async function build(options) {
   }
 
   const kaon = new Kaon(config);
-  return kaon.build();
+  await kaon.build();
 }
 
 module.exports = build;

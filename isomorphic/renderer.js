@@ -1,7 +1,5 @@
-const { inspect } = require('util');
 const serialize = require('serialize-javascript');
 const { debugRender: debug } = require('../lib/debug');
-const { getAssets } = require('../utils/assets');
 
 const getRenderer = (config) => {
   // invalidate cache and require fresh cache
@@ -17,8 +15,6 @@ const getRenderer = (config) => {
   isomorphic.render = require(config.renderer.template);
 
   return async (ctx) => {
-    const manifest = require(`${config.build.target}/manifest.json`);
-
     const renderProps = {
       helmet: {},
     };
@@ -28,11 +24,8 @@ const getRenderer = (config) => {
     };
 
     debug('manifest:');
-    debug(inspect(manifest, { colors: true, depth: null }));
 
 
-    const assets = getAssets(manifest, config);
-    Object.assign(renderProps, assets);
     if (__SSR__) {
       const {
         html,
@@ -50,8 +43,6 @@ const getRenderer = (config) => {
         helmet,
         statics,
       });
-
-      debug(inspect(assets, { colors: true, depth: null }));
     }
 
 

@@ -23,10 +23,5 @@ module.exports = {
         "@babel/plugin-transform-runtime",
       ]
     },
-    production: {
-      plugins: [
-        '@babel/runtime'
-      ]
-    }
   }
 }

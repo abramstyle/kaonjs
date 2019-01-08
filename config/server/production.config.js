@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 const babelOptions = require('../../.babelrc.server');
 
@@ -36,8 +36,8 @@ const getConfig = (config) => {
   return {
     name: 'server',
     target: 'node',
-    // devtool: 'source-map',
-    devtool: 'cheap-module-source-map',
+    mode: 'production',
+    devtool: false,
     entry: [entry],
     externals,
     output: {
@@ -94,6 +94,13 @@ const getConfig = (config) => {
         },
       ],
     },
+    optimization: {
+      namedModules: true,
+      minimize: false,
+      minimizer: [
+        new UglifyJsPlugin(),
+      ],
+    },
     plugins: [
       // new WriteFilePlugin(),
       new webpack.optimize.LimitChunkCountPlugin({
@@ -106,7 +113,6 @@ const getConfig = (config) => {
         __RELEASE__: JSON.stringify(__RELEASE__),
         __PROD__: JSON.stringify(__PROD__),
       }),
-      new UglifyJSPlugin(),
     ],
   };
 };
