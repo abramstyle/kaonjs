@@ -13,6 +13,9 @@ module.exports = {
     ["react-css-modules", {
       "generateScopedName": "[name]__[local]___[hash:base64:5]"
     }],
+    ["@babel/plugin-proposal-class-properties", {
+      "loose": true
+    }]
   ],
   "env": {
     "development": {
