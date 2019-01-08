@@ -26,7 +26,7 @@ npm install kaonjs
 ```
 or with yarn
 ```
-yarn add kaon
+yarn add kaonjs
 ```
 ## add your config
 Config is a js file that default exported a Javascript object, it specified a lot ot configurations. The default path is `<project_root>/config/kaon.config.js`. But you can put it into anywhere of your project.
@@ -35,36 +35,40 @@ The config file is not required, Kaon will use the default config as below:
 
 ```js
 const kaonConfig = {
-  ssr: true,
-  app: {
-    name: 'Kaon Config Template (production)',
-    shortName: 'rib',
-    port: 1827,
-    routes: `${baseDir}/app/routes`,
-    middlewares: `${baseDir}/app/middlewares`,
-  },
-  resources: {
-    root: `${baseDir}/public`,
-  },
-  isomorphic: {
-    routes: `${baseDir}/src/routes`,
-    store: `${baseDir}/src/store/configureStore.js`,
-    main: `${baseDir}/src/client`,
-  },
-  postcss: {
-    path: `${baseDir}/config/postcss.config.js`,
-  },
-  webpack: {
-    client: `${baseDir}/config/webpack.client.config`,
-    server: `${baseDir}/config/webpack.server.config`,
-  },
-  build: {
-    host: 'localhost',
-    port: 1592,
-    path: 'build/',
-    target: `${baseDir}/public/build`,
-  },
-};
+    ssr: true,
+    onlyServer: false,
+    renderer: {
+      template: path.resolve(__dirname, '../isomorphic/template'),
+    },
+    app: {
+      name: 'Kaon Config Template (production)',
+      shortName: 'rib',
+      port: 1827,
+      routes: `${baseDir}/app/routes`,
+      middlewares: `${baseDir}/app/middlewares`,
+    },
+    resources: {
+      root: `${baseDir}/public`,
+    },
+    isomorphic: {
+      routes: `${baseDir}/src/routes`,
+      store: `${baseDir}/src/store/configureStore.js`,
+      main: `${baseDir}/src/client`,
+    },
+    postcss: {
+      path: `${baseDir}/config/postcss.config.js`,
+    },
+    webpack: {
+      client: `${baseDir}/config/webpack.client.config.js`,
+      server: `${baseDir}/config/webpack.server.config.js`,
+    },
+    build: {
+      host: 'localhost',
+      port: 1592,
+      path: 'build/',
+      target: `${baseDir}/public/build`,
+    },
+  };
 ```
 
 
@@ -95,8 +99,8 @@ Enable or disable server side side rendering. Disable ssr will improve start up 
 - postcss.path - If use postcss, shoud specify postcss path.
 
 ### webpack
-- webpack.client - your client webpack configuration, object or function.
-- webpack.server - your server webpack configuration, object or function.
+- webpack.client - your client webpack configuration, object or function. It will merge into default webpack configuration.
+- webpack.server - your server webpack configuration, object or function. It will merge into default webpack configuration.
 
 ### build
 - build.host - The dev server will server at this host.
@@ -121,13 +125,21 @@ available options:
 - config - specify config path
 
 ## nodejs APIs
-You can use kaon as an npm modules instead of cli.
+You can use kaon as an node modules instead of cli.
 
 ```javascript
 const Kaon = require('kaon');
 const kaon = new Kaon(config);
 
 kaon.start();
+```
+
+### build
+```javascript
+const Kaon = require('kaon);
+const kaon = new Kaon(config);
+
+kaon.build();
 ```
 
 ## environment variables
@@ -176,6 +188,8 @@ module.exports = applyRoutes;
 You can use [react-helmet](https://github.com/nfl/react-helmet).
 
 ## apply your own webpack configuration.
+
+
 *ATTENTION!* You cannot override default entry with yours.
 
 ## pm2 graceful reload
