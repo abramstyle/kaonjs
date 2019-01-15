@@ -23,7 +23,7 @@ async function prefetch(config) {
     }
 
     if (getInitialProps && isFunction(getInitialProps)) {
-      fetchingList.push(getInitialProps(store.dispatch, params));
+      fetchingList.push(getInitialProps(store.dispatch, params, path));
     }
   });
 
