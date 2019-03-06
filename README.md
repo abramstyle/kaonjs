@@ -136,7 +136,7 @@ kaon.start();
 
 ### build
 ```javascript
-const Kaon = require('kaon);
+const Kaon = require('kaon');
 const kaon = new Kaon(config);
 
 kaon.build();
